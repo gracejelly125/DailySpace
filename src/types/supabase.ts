@@ -9,11 +9,12 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      posts: {
+      todos: {
         Row: {
           content: string
           created_at: string
           id: string
+          status: string
           title: string
           user_id: string
         }
@@ -21,6 +22,7 @@ export type Database = {
           content: string
           created_at?: string
           id?: string
+          status: string
           title: string
           user_id: string
         }
@@ -28,6 +30,7 @@ export type Database = {
           content?: string
           created_at?: string
           id?: string
+          status?: string
           title?: string
           user_id?: string
         }
@@ -47,21 +50,18 @@ export type Database = {
           email: string
           id: string
           nickname: string
-          profile_image_url: string
         }
         Insert: {
           created_at?: string
           email: string
           id?: string
           nickname: string
-          profile_image_url?: string
         }
         Update: {
           created_at?: string
           email?: string
           id?: string
           nickname?: string
-          profile_image_url?: string
         }
         Relationships: []
       }

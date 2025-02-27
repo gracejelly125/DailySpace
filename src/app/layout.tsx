@@ -1,10 +1,14 @@
-import type { Metadata } from "next";
-import "./globals.css";
-import Provider from "@/providers/Provider";
+import type { Metadata } from 'next';
+
+import Layout from '@/components/layout/Layout';
+import Provider from '@/providers/Provider';
+
+import './globals.css';
+
 
 export const metadata: Metadata = {
-  title: "To Do List",
-  description: "개인 프로젝트",
+  title: 'To Do List',
+  description: '개인 프로젝트',
 };
 
 export default function RootLayout({
@@ -15,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <Provider>{children}</Provider>
+        <Provider>
+          <Layout>{children}</Layout>
+        </Provider>
       </body>
     </html>
   );
