@@ -14,7 +14,7 @@ export type Database = {
           content: string
           created_at: string
           id: string
-          status: string
+          status: boolean
           title: string
           user_id: string
         }
@@ -22,7 +22,7 @@ export type Database = {
           content: string
           created_at?: string
           id?: string
-          status: string
+          status: boolean
           title: string
           user_id?: string
         }
@@ -30,7 +30,7 @@ export type Database = {
           content?: string
           created_at?: string
           id?: string
-          status?: string
+          status?: boolean
           title?: string
           user_id?: string
         }

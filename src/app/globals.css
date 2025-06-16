@@ -2,36 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
 .common-btn {
   @apply rounded-md bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-600;
 }
 
 .common-form {
-  @apply mx-auto w-full rounded-lg border p-4 shadow-md;
+  @apply mx-auto w-full rounded-lg border p-5
 }
 
 .common-input {
