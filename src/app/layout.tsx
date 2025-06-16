@@ -5,7 +5,6 @@ import Provider from '@/providers/Provider';
 
 import './globals.css';
 
-
 export const metadata: Metadata = {
   title: 'To Do List',
   description: '개인 프로젝트',

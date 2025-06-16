@@ -10,10 +10,15 @@ const HeaderClient = () => {
   return (
     <div className="max-w-4xl mx-auto p-4 border-b">
       <nav className="flex justify-between items-center">
-        <ul>
+        <ul className="flex items-center gap-4">
           <li>
             <Link className="py-2 px-4 rounded-lg inline-block" href="/">
               홈
+            </Link>
+          </li>
+          <li>
+            <Link className="" href="/todolist">
+              투두
             </Link>
           </li>
         </ul>
