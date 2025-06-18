@@ -1,7 +1,7 @@
 import React from 'react';
 
 const HomePage = () => {
-  return <h1>To Do List</h1>;
+  return <h1 className="text-center">Home</h1>;
 };
 
 export default HomePage;

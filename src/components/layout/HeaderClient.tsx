@@ -17,14 +17,24 @@ const HeaderClient = () => {
             </Link>
           </li>
           {isAuthenticated && (
-            <li>
-              <Link
-                href="/todolist"
-                className="py-2 px-4 rounded-lg inline-block"
-              >
-                투두
-              </Link>
-            </li>
+            <>
+              <li>
+                <Link
+                  href="/todolist"
+                  className="py-2 px-4 rounded-lg inline-block"
+                >
+                  투두
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/blog"
+                  className="py-2 px-4 rounded-lg inline-block"
+                >
+                  블로그
+                </Link>
+              </li>
+            </>
           )}
         </ul>
 
