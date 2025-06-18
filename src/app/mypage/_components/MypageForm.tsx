@@ -99,7 +99,7 @@ const MypageForm = ({
 
   return (
     <div className="common-form flex flex-col items-center">
-      <div className="w-[500px] flex flex-col gap-2 border p-5 mb-5 rounded-lg">
+      <div className="w-[500px] flex flex-col gap-2 p-5 mb-5">
         <form
           onSubmit={handleSubmit(handleNicknameChange)}
           className="flex items-center gap-2"
@@ -147,7 +147,7 @@ const MypageForm = ({
       <button
         type="button"
         onClick={handleDeleteAccount}
-        className="common-btn ml-auto"
+        className="common-btn"
       >
         계정 삭제
       </button>

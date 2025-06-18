@@ -7,7 +7,7 @@
 }
 
 .common-form {
-  @apply mx-auto w-full rounded-lg border p-5
+  @apply mx-auto w-full p-5;
 }
 
 .common-input {
