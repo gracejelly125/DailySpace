@@ -40,8 +40,6 @@ export const signup = async (data: SignUpDataType): Promise<void> => {
   }
 
   await signout();
-
-  redirect('/sign-in');
 };
 
 /* 로그아웃 */
@@ -82,7 +80,7 @@ export const fetchUser = async (): Promise<User | null> => {
 };
 
 /* 회원 탈퇴 */
-export const deleteUser = async (): Promise<void> => {
+export const deleteUserFromSupabase = async (): Promise<void> => {
   const supabase = createClient();
 
   const {

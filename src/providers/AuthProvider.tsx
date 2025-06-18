@@ -1,6 +1,13 @@
 'use client';
 
-import { createContext, ReactNode, useContext, useEffect, useMemo } from 'react';
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useMemo,
+} from 'react';
+
 import { fetchUser, signout } from '@/app/actions/auth';
 import { useAuthStore } from '@/store/useAuthStore';
 import { SignInDataType, User } from '@/types/types';
@@ -55,8 +62,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const logout = async () => {
-    await signout();
     removeUser();
+    await signout();
   };
 
   const isAuthenticated = useMemo(() => !!user, [user]);

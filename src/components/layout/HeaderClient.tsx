@@ -12,43 +12,42 @@ const HeaderClient = () => {
       <nav className="flex justify-between items-center">
         <ul className="flex items-center gap-4">
           <li>
-            <Link className="py-2 px-4 rounded-lg inline-block" href="/">
+            <Link href="/" className="py-2 px-4 rounded-lg inline-block">
               홈
             </Link>
           </li>
-          <li>
-            <Link className="" href="/todolist">
-              투두
-            </Link>
-          </li>
+          {isAuthenticated && (
+            <li>
+              <Link
+                href="/todolist"
+                className="py-2 px-4 rounded-lg inline-block"
+              >
+                투두
+              </Link>
+            </li>
+          )}
         </ul>
-        <ul className="flex gap-4">
+
+        <ul className="flex items-center gap-4">
           {isAuthenticated ? (
             <>
               <li>
-                <Link className="common-btn inline-block" href="/mypage">
+                <Link href="/mypage" className="common-btn inline-block">
                   마이페이지
                 </Link>
               </li>
               <li>
-                <button
-                  className="common-btn"
-                  onClick={() => {
-                    logout();
-                  }}
-                >
+                <button className="common-btn" onClick={() => logout()}>
                   로그아웃
                 </button>
               </li>
             </>
           ) : (
-            <>
-              <li>
-                <Link className="common-btn inline-block" href="/sign-in">
-                  로그인
-                </Link>
-              </li>
-            </>
+            <li>
+              <Link href="/sign-in" className="common-btn inline-block">
+                로그인
+              </Link>
+            </li>
           )}
         </ul>
       </nav>
