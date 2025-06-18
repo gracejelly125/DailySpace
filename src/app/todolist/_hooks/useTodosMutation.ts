@@ -3,13 +3,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { addTodo, deleteTodo, toggleStatus } from '@/app/todolist/_utils/todos';
-import { Todos } from '@/types/types';
+import { Todo } from '@/types/types';
 
 export const useTodosMutation = () => {
   const queryClient = useQueryClient();
 
   const addMutation = useMutation({
-    mutationFn: (todo: Omit<Todos, 'id' | 'created_at'>) => addTodo(todo),
+    mutationFn: (todo: Omit<Todo, 'id' | 'created_at'>) => addTodo(todo),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['todos'] });
     },
@@ -23,7 +23,7 @@ export const useTodosMutation = () => {
   });
 
   const toggleMutation = useMutation({
-    mutationFn: (todo: Todos) => toggleStatus(todo),
+    mutationFn: (todo: Todo) => toggleStatus(todo),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['todos'] });
     },

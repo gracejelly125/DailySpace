@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Todos } from '@/types/types';
+import { Todo } from '@/types/types';
 
 interface TodoItemProps {
-  todo: Todos;
+  todo: Todo;
   deleteButtonHandler: () => void;
   cancelButtonHandler: () => void;
   buttonText: string;
