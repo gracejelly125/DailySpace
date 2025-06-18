@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { deletePost, fetchPostDetail } from '@/app/blog/_utils/post';
@@ -71,15 +72,23 @@ const DetailCard = ({ postId }: DetailCardProps) => {
         >
           ←
         </button>
-        <button
-          id="delete-button"
-          type="button"
-          aria-label="삭제"
-          onClick={handleDeletePost}
-          className="common-btn"
-        >
-          삭제
-        </button>
+        <div className="flex gap-2">
+          <Link
+            href={`/blog/new?edit=${postDetailData.id}`}
+            className="common-btn !py-2.5"
+          >
+            수정
+          </Link>
+          <button
+            id="delete-button"
+            type="button"
+            aria-label="삭제"
+            onClick={handleDeletePost}
+            className="common-btn !bg-red-600 hover:!bg-red-500"
+          >
+            삭제
+          </button>
+        </div>
       </div>
 
       <article className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
