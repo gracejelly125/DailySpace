@@ -1,12 +1,19 @@
 import React from 'react';
 
+import dayjs from 'dayjs';
+import 'dayjs/locale/ko';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+import { Trash2 } from 'lucide-react';
+
 import { Todo } from '@/types/types';
 
+dayjs.extend(localizedFormat);
+dayjs.locale('ko');
 interface TodoItemProps {
   todo: Todo;
   deleteButtonHandler: () => void;
   cancelButtonHandler: () => void;
-  buttonText: string;
+  buttonText: string | React.JSX.Element;
 }
 
 const TodosItem = ({
@@ -16,40 +23,52 @@ const TodosItem = ({
   buttonText,
 }: TodoItemProps) => {
   return (
-    <li
-      className={`flex items-center rounded-xl border p-4 ${
-        !todo.status ? 'border-red-500' : ''
-      }`}
-    >
-      <div className="flex flex-col">
-        <h3
-          className={`text-lg font-bold ${
-            todo.status ? 'text-gray-300' : 'text-gray-800'
-          }`}
-        >
-          {todo.title}
-        </h3>
-        <p
-          className={`text-lg ${
-            todo.status ? 'text-gray-300' : 'text-gray-800'
-          }`}
-        >
-          {todo.content}
-        </p>
+    <li className="relative h-[200px] w-[200px] bg-yellow-100 border border-yellow-300 p-4 shadow-md">
+      <span
+        className="absolute -top-2 left-1/2 text-2xl rotate-[15deg] drop-shadow"
+        aria-hidden="true"
+      >
+        📌
+      </span>
+      <div className="flex items-center h-full mt-2">
+        <div className="mr-3">
+          <button onClick={cancelButtonHandler} className="text-red-500">
+            {buttonText}
+          </button>
+        </div>
+
+        <div className="flex flex-col space-y-1">
+          <p
+            className={`font-bold break-words leading-5 ${
+              todo.status ? 'text-gray-400 line-through' : 'text-gray-800'
+            }`}
+          >
+            {todo.title}
+          </p>
+          <p
+            className={`break-words leading-5 ${
+              todo.status ? 'text-gray-400 line-through' : 'text-gray-700'
+            }`}
+          >
+            {todo.content}
+          </p>
+        </div>
       </div>
 
-      <div className="ml-auto flex flex-col gap-1">
+      <p
+        className={`absolute top-8 left-3 text-xs text-gray-600 ${
+          todo.status ? '!text-gray-400 line-through' : ''
+        }`}
+      >
+        {dayjs(todo.created_at).format('YYYY년 M월 D일 dddd HH:mm')}
+      </p>
+
+      <div className="absolute bottom-2 right-3">
         <button
           onClick={deleteButtonHandler}
-          className="common-btn py-1 text-sm"
+          className="text-red-500 hover:text-red-600"
         >
-          삭제
-        </button>
-        <button
-          onClick={cancelButtonHandler}
-          className="common-btn py-1 text-sm"
-        >
-          {buttonText}
+          <Trash2 size={18} />
         </button>
       </div>
     </li>

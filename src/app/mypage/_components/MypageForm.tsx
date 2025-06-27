@@ -18,13 +18,16 @@ interface MypageFormProps {
   setCurrentNickname: React.Dispatch<React.SetStateAction<string>>;
 }
 
-// 🔒 스키마 정의
-const mypageSchema = z.object({
+// ✅ 각각의 스키마 정의
+const nicknameSchema = z.object({
   newNickname: z
     .string()
     .nonempty('닉네임을 입력해주세요.')
     .min(2, '닉네임은 2자 이상이어야 합니다.')
     .max(6, '닉네임은 6자 이하이어야 합니다.'),
+});
+
+const passwordSchema = z.object({
   newPassword: z
     .string()
     .nonempty('새 비밀번호를 입력해주세요.')
@@ -34,32 +37,34 @@ const mypageSchema = z.object({
     ),
 });
 
-type MypageFormValues = z.infer<typeof mypageSchema>;
+type NicknameFormValues = z.infer<typeof nicknameSchema>;
+type PasswordFormValues = z.infer<typeof passwordSchema>;
 
 const MypageForm = ({
   currentNickname,
   setCurrentNickname,
 }: MypageFormProps) => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    setValue,
-    formState: { errors },
-  } = useForm<MypageFormValues>({
-    resolver: zodResolver(mypageSchema),
+  const nicknameForm = useForm<NicknameFormValues>({
+    resolver: zodResolver(nicknameSchema),
     mode: 'onChange',
     defaultValues: {
       newNickname: currentNickname,
+    },
+  });
+
+  const passwordForm = useForm<PasswordFormValues>({
+    resolver: zodResolver(passwordSchema),
+    mode: 'onChange',
+    defaultValues: {
       newPassword: '',
     },
   });
 
   useEffect(() => {
-    setValue('newNickname', currentNickname);
-  }, [currentNickname, setValue]);
+    nicknameForm.setValue('newNickname', currentNickname);
+  }, [currentNickname, nicknameForm.setValue]);
 
-  const handleNicknameChange = async (values: MypageFormValues) => {
+  const handleNicknameChange = async (values: NicknameFormValues) => {
     if (values.newNickname === currentNickname) {
       console.error('기존 닉네임과 같습니다.');
       return;
@@ -70,19 +75,19 @@ const MypageForm = ({
       console.error('닉네임 변경에 실패했습니다.');
       return;
     }
-
+    alert('닉네임이 변경되었습니다.');
     setCurrentNickname(values.newNickname);
-    reset({ ...values, newNickname: '', newPassword: '' });
+    nicknameForm.reset({ newNickname: '' });
   };
 
-  const handlePasswordChange = async (values: MypageFormValues) => {
+  const handlePasswordChange = async (values: PasswordFormValues) => {
     const isSuccess = await updatePassword(values.newPassword);
     if (!isSuccess) {
       console.error('비밀번호 변경에 실패했습니다.');
       return;
     }
-
-    reset({ ...values, newNickname: values.newNickname, newPassword: '' });
+    alert('비밀번호가 변경되었습니다.');
+    passwordForm.reset({ newPassword: '' });
   };
 
   const handleDeleteAccount = async () => {
@@ -94,56 +99,61 @@ const MypageForm = ({
       console.error('계정 삭제에 실패했습니다.');
       return;
     }
+
     window.location.href = '/';
   };
 
   return (
     <div className="common-form flex flex-col items-center">
       <div className="w-[500px] flex flex-col gap-2 p-5 mb-5">
+        {/* 닉네임 변경 폼 */}
         <form
-          onSubmit={handleSubmit(handleNicknameChange)}
+          onSubmit={nicknameForm.handleSubmit(handleNicknameChange)}
           className="flex items-center gap-2"
         >
           <input
             className="common-input flex-1"
             type="text"
             placeholder="닉네임"
-            {...register('newNickname')}
+            {...nicknameForm.register('newNickname')}
           />
           <button type="submit" className="common-btn w-[140px]">
             닉네임 변경
           </button>
         </form>
         <div className="h-[20px] text-sm leading-[20px]">
-          {errors.newNickname && (
+          {nicknameForm.formState.errors.newNickname && (
             <span className="text-red-500 block">
-              {errors.newNickname.message}
+              {nicknameForm.formState.errors.newNickname.message}
             </span>
           )}
         </div>
 
+        {/* 비밀번호 변경 폼 */}
         <form
-          onSubmit={handleSubmit(handlePasswordChange)}
+          onSubmit={passwordForm.handleSubmit(handlePasswordChange)}
           className="flex items-center gap-2"
         >
           <input
             className="common-input flex-1"
             type="password"
             placeholder="새 비밀번호"
-            {...register('newPassword')}
+            {...passwordForm.register('newPassword')}
           />
           <button type="submit" className="common-btn w-[140px]">
             비밀번호 변경
           </button>
         </form>
         <div className="h-[20px] text-sm leading-[20px]">
-          {errors.newPassword && (
+          {passwordForm.formState.errors.newPassword && (
             <span className="text-red-500 block">
-              {errors.newPassword.message}
+              {passwordForm.formState.errors.newPassword.message}
             </span>
           )}
         </div>
       </div>
+
+      {/* 계정 삭제 버튼 */}
       <button
         type="button"
         onClick={handleDeleteAccount}

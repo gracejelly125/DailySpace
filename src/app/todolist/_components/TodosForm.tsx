@@ -13,7 +13,12 @@ type FormValues = {
 };
 
 const TodosForm = () => {
-  const { register, handleSubmit, reset } = useForm<FormValues>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormValues>();
   const { addTodo } = useTodosMutation();
 
   const onSubmit = async (data: FormValues) => {
@@ -38,15 +43,12 @@ const TodosForm = () => {
   };
 
   return (
-    <div className="flex flex-col border-b p-5">
+    <div className="flex flex-col border-b p-4">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="common-form mb-5 flex flex-wrap items-end gap-4"
+        className="common-form flex flex-wrap items-center gap-4"
       >
-        <div className="flex flex-col gap-1">
-          <label htmlFor="title" className="text-gray-600">
-            제목
-          </label>
+        <div className="flex flex-col">
           <input
             id="title"
             type="text"
@@ -54,11 +56,14 @@ const TodosForm = () => {
             placeholder="제목을 입력해주세요."
             {...register('title', { required: '제목을 입력해주세요.' })}
           />
+          {errors.title && (
+            <p className="text-red-500 text-xs mt-1 ml-1">
+              {errors.title.message}
+            </p>
+          )}
         </div>
-        <div className="flex flex-col gap-1">
-          <label htmlFor="content" className="text-gray-600">
-            내용
-          </label>
+
+        <div>
           <input
             id="content"
             type="text"
@@ -66,10 +71,14 @@ const TodosForm = () => {
             placeholder="내용을 입력해주세요."
             {...register('content', { required: '내용을 입력해주세요.' })}
           />
+          {errors.content && (
+            <p className="text-red-500 text-xs mt-1 ml-1">
+              {errors.content.message}
+            </p>
+          )}
         </div>
-        <button type="submit" className="common-btn ml-auto">
-          추가
-        </button>
+
+        <button type="submit" className='common-btn ml-auto'>New Task 🐝</button>
       </form>
     </div>
   );

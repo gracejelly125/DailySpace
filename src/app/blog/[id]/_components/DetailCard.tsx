@@ -68,7 +68,7 @@ const DetailCard = ({ postId }: DetailCardProps) => {
           type="button"
           aria-label="뒤로 가기"
           onClick={() => router.push('/blog')}
-          className="common-btn"
+          className="common-btn !rounded-full"
         >
           ←
         </button>

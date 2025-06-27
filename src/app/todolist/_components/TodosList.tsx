@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import { Square, SquareCheckBig } from 'lucide-react';
+
 import TodosItem from '@/app/todolist/_components/TodosItem';
 import { useTodosMutation } from '@/app/todolist/_hooks/useTodosMutation';
 import { useTodosQuery } from '@/app/todolist/_hooks/useTodosQuery';
@@ -19,14 +21,14 @@ const TodosList = () => {
       title: '할 일',
       todos: undoneTodos,
       emptyMsg: '할 일이 없습니다.',
-      buttonText: '완료',
+      buttonText: <Square size={18} />,
     },
     {
       id: 'done',
       title: '완료된 일',
       todos: doneTodos,
       emptyMsg: '완료된 일이 없습니다.',
-      buttonText: '취소',
+      buttonText: <SquareCheckBig size={18} />,
     },
   ];
 
@@ -42,7 +44,7 @@ const TodosList = () => {
           {todos.length === 0 ? (
             <p className="m-5 text-center text-gray-500">{emptyMsg}</p>
           ) : (
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-wrap gap-5 p-4">
               {todos.map((todo) => (
                 <TodosItem
                   key={todo.id}
