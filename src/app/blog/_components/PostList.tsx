@@ -36,8 +36,8 @@ const PostList = () => {
   };
 
   return (
-    <section className="flex flex-col">
-      <div className="mb-5 ml-auto">
+    <section className="flex flex-col p-4">
+      <div className="mt-5 mb-5 ml-auto mr-7">
         <button
           id="new-post-button"
           type="button"
