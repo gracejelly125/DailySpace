@@ -78,7 +78,7 @@ const TodosForm = () => {
           )}
         </div>
 
-        <button type="submit" className='common-btn ml-auto'>New Task 🐝</button>
+        <button type="submit" className='common-btn ml-auto'>📝 New Task</button>
       </form>
     </div>
   );

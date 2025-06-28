@@ -128,7 +128,7 @@ const DetailCard = ({ postId }: DetailCardProps) => {
                       width={500}
                       height={500}
                       priority
-                      className="mx-auto rounded object-cover"
+                      className="mx-auto object-cover"
                     />
                   </SwiperSlide>
                 ))}

@@ -45,7 +45,7 @@ const PostList = () => {
           onClick={handleGoToNewPost}
           className="common-btn"
         >
-          📝 글작성
+          ✍️ New Post
         </button>
       </div>
       <ul className="flex flex-wrap gap-5 p-2">
