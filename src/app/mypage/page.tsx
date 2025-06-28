@@ -1,7 +1,12 @@
-import React from "react";
+import Mypage from '@/app/mypage/_components/Mypage';
 
 const MypagePage = () => {
-  return <div>MypagePage</div>;
+  return (
+    <>
+      <h1 className="text-center text-2xl font-bold mt-5">Profile</h1>
+      <Mypage />
+    </>
+  );
 };
 
 export default MypagePage;

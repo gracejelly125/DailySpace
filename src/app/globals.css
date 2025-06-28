@@ -2,26 +2,91 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+    format('woff');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'GmarketSansLight';
+  src: url('../assets/fonts/GmarketSansLight.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('../assets/fonts/GmarketSansMedium.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@font-face {
+  font-family: 'GmarketSansBold';
+  src: url('../assets/fonts/GmarketSansBold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+* {
+  font-family: 'Pretendard-Regular';
+}
+
+h1 {
+  font-family: 'GmarketSansBold';
+}
+.common-btn {
+  @apply rounded-full bg-yellow-500 px-4 py-2 font-bold text-white hover:bg-yellow-600;
+}
+.common-form {
+  @apply mx-auto w-full p-5;
+}
+
+.common-input {
+  @apply rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-red-500;
+}
+
+.common-nav {
+  @apply inline-block rounded-lg px-4 py-2 text-lg font-bold;
+}
+
+.common-box {
+  @apply flex w-full max-w-md flex-col gap-2 p-4;
+}
+
+.swiper-pagination-bullet {
+  background-color: #d1d5db !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #eab308 !important;
+}
+
+.swiper-pagination {
+  bottom: 0 !important;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  @apply m-0 h-6 w-[18px] -translate-y-1/2 bg-white/40;
+}
+
+.swiper-button-prev {
+  @apply rounded-l;
+}
+
+.swiper-button-next {
+  @apply rounded-r;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  @apply text-sm font-semibold text-gray-700;
 }

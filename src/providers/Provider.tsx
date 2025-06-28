@@ -1,38 +1,14 @@
-"use client";
+'use client';
 
-import {
-  isServer,
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import { AuthProvider } from '@/providers/AuthProvider';
+import QueryProvider from '@/providers/QueryProvider';
 
-const makeQueryClient = () => {
-  return new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: 60 * 1000,
-      },
-    },
-  });
-};
-
-let browserQueryClient: QueryClient | undefined = undefined;
-
-const getQueryClient = () => {
-  if (isServer) {
-    return makeQueryClient();
-  } else {
-    if (!browserQueryClient) browserQueryClient = makeQueryClient();
-    return browserQueryClient;
-  }
-};
-
-const Provider = ({ children }: { children: React.ReactNode }) => {
-  const queryClient = getQueryClient();
-
+export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    <QueryProvider>
+      <AuthProvider>{children}</AuthProvider>
+    </QueryProvider>
   );
 };
 
-export default Provider;
+export default Providers;
