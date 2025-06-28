@@ -56,7 +56,7 @@ const useMypage = (
 
   useEffect(() => {
     nicknameForm.setValue('newNickname', currentNickname);
-  }, [currentNickname, nicknameForm.setValue]);
+  }, [nicknameForm, currentNickname, nicknameForm.setValue]);
 
   const handleNicknameChange = async (values: NicknameFormValues) => {
     if (values.newNickname === currentNickname) {

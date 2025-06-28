@@ -4,8 +4,6 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import BlogImage from '@/assets/images/blog.jpg';
-import TodolistImage from '@/assets/images/todolist.jpg';
 import { useAuth } from '@/providers/AuthProvider';
 
 const HomeSection = () => {
@@ -76,7 +74,7 @@ const HomeSection = () => {
                 transition={{ duration: 1.0, delay: 0.2 }}
               >
                 <Image
-                  src={TodolistImage}
+                  src="/assets/todolist.JPG"
                   alt="투두리스트 사용 예시"
                   width={400}
                   height={300}
@@ -89,7 +87,7 @@ const HomeSection = () => {
                 transition={{ duration: 1.0, delay: 0.6 }}
               >
                 <Image
-                  src={BlogImage}
+                  src="/assets/blog.JPG"
                   alt="블로그 사용 예시"
                   width={400}
                   height={300}
