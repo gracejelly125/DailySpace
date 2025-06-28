@@ -8,7 +8,7 @@ import { z } from 'zod';
 import { signup } from '@/app/actions/auth';
 import { SignUpDataType } from '@/types/types';
 
-const signupSchema = z
+export const signupSchema = z
   .object({
     email: z
       .string()

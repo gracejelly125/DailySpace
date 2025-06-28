@@ -42,12 +42,20 @@ h1 {
   font-family: 'GmarketSansBold';
 }
 .common-btn {
-  @apply rounded-md bg-pink-500 px-4 py-2 font-bold text-white hover:bg-pink-600;
+  @apply rounded-full bg-yellow-500 px-4 py-2 font-bold text-white hover:bg-yellow-600;
 }
 .common-form {
   @apply mx-auto w-full p-5;
 }
 
 .common-input {
-  @apply rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-green-500;
+  @apply rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-red-500;
+}
+
+.common-nav {
+  @apply inline-block rounded-lg px-4 py-2 text-lg font-bold;
+}
+
+.common-box {
+  @apply flex w-full max-w-md flex-col gap-2 p-4;
 }

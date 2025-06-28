@@ -11,7 +11,7 @@ const SignUpForm = () => {
       className="common-form flex flex-col items-center"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className="w-full p-4 flex flex-col gap-4">
+      <div className="common-box">
         <InputField
           id="email"
           label="아이디"

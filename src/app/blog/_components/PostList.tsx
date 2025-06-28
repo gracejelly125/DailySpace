@@ -49,14 +49,14 @@ const PostList = () => {
           글작성
         </button>
       </div>
-      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+      <ul className="flex flex-wrap gap-5 p-2">
         {isLoading ? (
           <Loading />
         ) : posts.length > 0 ? (
           posts.map((post) => <PostCard key={post.id} post={post} />)
         ) : (
           <li className="col-span-full text-center text-gray-500">
-            해당 카테고리에 대한 포스트가 없습니다.
+            아무리 짧아도 좋아요! 오늘 느낀 감정 하나만 적어도 충분해요 😊
           </li>
         )}
       </ul>

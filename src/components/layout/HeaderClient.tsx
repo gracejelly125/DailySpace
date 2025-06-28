@@ -12,25 +12,19 @@ const HeaderClient = () => {
       <nav className="flex justify-between items-center">
         <ul className="flex items-center gap-4">
           <li>
-            <Link href="/" className="py-2 px-4 rounded-lg inline-block">
+            <Link href="/" className="common-nav">
               홈
             </Link>
           </li>
           {isAuthenticated && (
             <>
               <li>
-                <Link
-                  href="/todolist"
-                  className="py-2 px-4 rounded-lg inline-block"
-                >
+                <Link href="/todolist" className="common-nav">
                   투두
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/blog"
-                  className="py-2 px-4 rounded-lg inline-block"
-                >
+                <Link href="/blog" className="common-nav">
                   블로그
                 </Link>
               </li>

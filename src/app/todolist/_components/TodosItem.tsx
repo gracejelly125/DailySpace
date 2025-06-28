@@ -55,13 +55,13 @@ const TodosItem = ({
         </div>
       </div>
 
-      <p
+      <time
         className={`absolute top-8 left-3 text-xs text-gray-600 ${
           todo.status ? '!text-gray-400 line-through' : ''
         }`}
       >
-        {dayjs(todo.created_at).format('YYYY년 M월 D일 dddd HH:mm')}
-      </p>
+        {dayjs(todo.created_at).format('YYYY년 M월 D일 dddd')}
+      </time>
 
       <div className="absolute bottom-2 right-3">
         <button

@@ -84,7 +84,7 @@ const DetailCard = ({ postId }: DetailCardProps) => {
             type="button"
             aria-label="삭제"
             onClick={handleDeletePost}
-            className="common-btn !bg-red-600 hover:!bg-red-500"
+            className="common-btn !bg-red-500 hover:!bg-red-600"
           >
             삭제
           </button>
