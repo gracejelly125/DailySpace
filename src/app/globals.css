@@ -59,3 +59,34 @@ h1 {
 .common-box {
   @apply flex w-full max-w-md flex-col gap-2 p-4;
 }
+
+.swiper-pagination-bullet {
+  background-color: #d1d5db !important;
+  opacity: 1 !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #eab308 !important;
+}
+
+.swiper-pagination {
+  bottom: 0 !important;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  @apply m-0 h-6 w-[18px] -translate-y-1/2 bg-white/40;
+}
+
+.swiper-button-prev {
+  @apply rounded-l;
+}
+
+.swiper-button-next {
+  @apply rounded-r;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  @apply text-sm font-semibold text-gray-700;
+}

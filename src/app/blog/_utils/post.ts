@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 import { getId } from '@/app/todolist/_utils/auth';
 import { Post } from '@/types/types';
 import { createClient } from '@/utils/supabase/client';
@@ -20,12 +22,77 @@ export const fetchPostsData = async () => {
   }
 };
 
+export const uploadPostImageFile = async (file: File) => {
+  try {
+    const compressedFile = await convertImageFormat(file, 'image/webp');
+
+    const { data: imageData, error: uploadError } = await supabase.storage
+      .from('post')
+      .upload(`${uuidv4()}.webp`, compressedFile);
+
+    if (uploadError) throw uploadError;
+
+    const { data: publicUrlData } = supabase.storage
+      .from('post')
+      .getPublicUrl(imageData.path);
+
+    return publicUrlData.publicUrl;
+  } catch (error) {
+    console.error('이미지 스토리지 저장에 실패했습니다.', error);
+    throw error;
+  }
+};
+
+const convertImageFormat = (file: File, format: string): Promise<File> => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      img.src = reader.result as string;
+    };
+
+    reader.onerror = (error) => reject(error);
+    reader.readAsDataURL(file);
+
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx?.drawImage(img, 0, 0);
+
+      canvas.toBlob(
+        (blob) => {
+          if (blob) {
+            const compressedFile = new File([blob], file.name, {
+              type: format,
+              lastModified: file.lastModified,
+            });
+            resolve(compressedFile);
+          } else {
+            reject('Blob conversion failed.');
+          }
+        },
+        format,
+        0.7,
+      );
+    };
+  });
+};
+
 type addPostProps = {
   newTitle: Post['title'];
   newContent: Post['content'];
+  newPostImageUrl: Post['image_url'];
 };
 
-export const addPost = async ({ newTitle, newContent }: addPostProps) => {
+export const addPost = async ({
+  newTitle,
+  newContent,
+  newPostImageUrl,
+}: addPostProps) => {
   try {
     const user_id = await getId();
 
@@ -39,6 +106,7 @@ export const addPost = async ({ newTitle, newContent }: addPostProps) => {
         {
           title: newTitle,
           content: newContent,
+          image_url: newPostImageUrl,
           user_id: user_id,
         },
       ])

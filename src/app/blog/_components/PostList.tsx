@@ -2,13 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { useRouter } from 'next/navigation';
-
 import PostCard from '@/app/blog/_components/PostCard';
 import { fetchPostsData } from '@/app/blog/_utils/post';
 import Loading from '@/components/common/Loading';
 import { useAuthStore } from '@/store/useAuthStore';
 import { Post } from '@/types/types';
+import { useRouter } from 'next/navigation';
 
 const PostList = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -46,7 +45,7 @@ const PostList = () => {
           onClick={handleGoToNewPost}
           className="common-btn"
         >
-          글작성
+          📝 글작성
         </button>
       </div>
       <ul className="flex flex-wrap gap-5 p-2">

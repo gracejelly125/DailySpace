@@ -24,7 +24,7 @@ const MypageForm = ({
 
   return (
     <div className="common-form flex flex-col items-center">
-      <div className="common-box !max-w-sm">
+      <div className="common-box">
         {/* 닉네임 변경 폼 */}
         <form
           onSubmit={nicknameForm.handleSubmit(handleNicknameChange)}

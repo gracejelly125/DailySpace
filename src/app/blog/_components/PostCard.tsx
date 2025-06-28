@@ -29,7 +29,7 @@ const PostCard = ({ post }: PostCardProps) => {
             <h3 className="mb-1 line-clamp-1 text-lg font-semibold text-gray-900 group-hover:text-primary-500">
               {post.title}
             </h3>
-            <p className="line-clamp-3 text-sm text-gray-600">{post.content}</p>
+            <p className="line-clamp-5 text-sm text-gray-600">{post.content}</p>
           </div>
 
           {post.created_at && (

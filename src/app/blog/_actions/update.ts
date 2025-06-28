@@ -11,6 +11,7 @@ const supabase = createClient();
 type updatePostProps = {
   updatedTitle: Post['title'];
   updatedContent: Post['content'];
+  updatedPostImageUrl: Post['image_url'];
   postId: Post['id'];
   userId: Post['user_id'];
 };
@@ -19,6 +20,7 @@ export const updatePost = async ({
   postId,
   updatedTitle,
   updatedContent,
+  updatedPostImageUrl,
   userId,
 }: updatePostProps) => {
   try {
@@ -27,6 +29,7 @@ export const updatePost = async ({
       .update({
         title: updatedTitle,
         content: updatedContent,
+        image_url: updatedPostImageUrl,
         user_id: userId,
       })
       .eq('id', postId)

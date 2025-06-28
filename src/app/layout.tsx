@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
+import '@/app/globals.css';
 import Layout from '@/components/layout/Layout';
 import Provider from '@/providers/Provider';
-
-import './globals.css';
 
 export const metadata: Metadata = {
   title: 'To Do List',
