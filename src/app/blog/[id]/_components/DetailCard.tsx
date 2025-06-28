@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 
 import { deletePost, fetchPostDetail } from '@/app/blog/_utils/post';
 import Loading from '@/components/common/Loading';
+import useDayjs from '@/hooks/useDayjs';
 import { Post } from '@/types/types';
 
 type DetailCardProps = {
@@ -19,6 +20,7 @@ const DetailCard = ({ postId }: DetailCardProps) => {
   const [isError, setIsError] = useState(false);
 
   const router = useRouter();
+  const dayjs = useDayjs();
 
   useEffect(() => {
     const fetchPostDetailData = async () => {
@@ -42,6 +44,9 @@ const DetailCard = ({ postId }: DetailCardProps) => {
   }, [postId]);
 
   const handleDeletePost = async () => {
+    const confirmed = window.confirm('정말로 게시물을 삭제하시겠습니까?');
+    if (!confirmed) return;
+
     try {
       await deletePost(postDetailData!.id);
       router.push('/blog');
@@ -91,7 +96,12 @@ const DetailCard = ({ postId }: DetailCardProps) => {
         </div>
       </div>
 
-      <article className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+      <article className="flex flex-col border border-gray-200 bg-white p-6 shadow-sm">
+        <time className="ml-auto text-gray-400">
+          {dayjs(postDetailData.created_at).format(
+            'YYYY년 M월 D일 dddd HH:mm:ss',
+          )}
+        </time>
         <h2 className="mb-4 text-2xl font-bold text-gray-900">
           {postDetailData.title}
         </h2>

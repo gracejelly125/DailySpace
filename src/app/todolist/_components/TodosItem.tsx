@@ -1,14 +1,10 @@
 import React from 'react';
 
-import dayjs from 'dayjs';
-import 'dayjs/locale/ko';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
 import { Trash2 } from 'lucide-react';
 
+import useDayjs from '@/hooks/useDayjs';
 import { Todo } from '@/types/types';
 
-dayjs.extend(localizedFormat);
-dayjs.locale('ko');
 interface TodoItemProps {
   todo: Todo;
   deleteButtonHandler: () => void;
@@ -22,6 +18,8 @@ const TodosItem = ({
   cancelButtonHandler,
   buttonText,
 }: TodoItemProps) => {
+  const dayjs = useDayjs();
+
   return (
     <li className="relative h-[200px] w-[200px] bg-yellow-100 border border-yellow-300 p-4 shadow-md">
       <span

@@ -20,7 +20,7 @@ const HeaderClient = () => {
             <>
               <li>
                 <Link href="/todolist" className="common-nav">
-                  투두
+                  투두리스트
                 </Link>
               </li>
               <li>

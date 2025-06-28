@@ -55,7 +55,7 @@ const PostList = () => {
         ) : posts.length > 0 ? (
           posts.map((post) => <PostCard key={post.id} post={post} />)
         ) : (
-          <li className="col-span-full text-center text-gray-500">
+          <li className="text-gray-500 mx-auto">
             아무리 짧아도 좋아요! 오늘 느낀 감정 하나만 적어도 충분해요 😊
           </li>
         )}

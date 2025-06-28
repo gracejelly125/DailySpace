@@ -2,21 +2,18 @@
 
 import React from 'react';
 
-import dayjs from 'dayjs';
-import 'dayjs/locale/ko';
-import localizedFormat from 'dayjs/plugin/localizedFormat';
 import Link from 'next/link';
 
+import useDayjs from '@/hooks/useDayjs';
 import { Post } from '@/types/types';
-
-dayjs.extend(localizedFormat);
-dayjs.locale('ko');
 
 type PostCardProps = {
   post: Post;
 };
 
 const PostCard = ({ post }: PostCardProps) => {
+  const dayjs = useDayjs();
+
   return (
     <li className="relative w-[250px] h-[250px]">
       <Link href={`/blog/${post.id}`}>
