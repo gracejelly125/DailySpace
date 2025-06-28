@@ -8,7 +8,7 @@ import Layout from '@/components/layout/Layout';
 import Provider from '@/providers/Provider';
 
 export const metadata: Metadata = {
-  title: 'To Do List',
+  title: 'Daily Space',
   description: '개인 프로젝트',
 };
 

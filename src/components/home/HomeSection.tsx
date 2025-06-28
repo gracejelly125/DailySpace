@@ -40,7 +40,7 @@ const HomeSection = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.0, delay: 0.5, ease: 'easeOut' }}
+              transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
             >
               <Link href="/todolist" className="common-btn !py-3">
                 To Do List
@@ -49,7 +49,7 @@ const HomeSection = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.0, delay: 0.7, ease: 'easeOut' }}
+              transition={{ duration: 0.8, delay: 0.7, ease: 'easeOut' }}
             >
               <Link href="/blog" className="common-btn !px-9 !py-3">
                 Blog
@@ -61,7 +61,7 @@ const HomeSection = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.0, delay: 0.5, ease: 'easeOut' }}
+              transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
             >
               <Link href="/sign-in" className="common-btn !px-9 !py-3">
                 로그인
