@@ -2,12 +2,13 @@
 
 import React, { useEffect, useState } from 'react';
 
+import { useRouter } from 'next/navigation';
+
 import PostCard from '@/app/blog/_components/PostCard';
 import { fetchPostsData } from '@/app/blog/_utils/post';
 import Loading from '@/components/common/Loading';
 import { useAuthStore } from '@/store/useAuthStore';
 import { Post } from '@/types/types';
-import { useRouter } from 'next/navigation';
 
 const PostList = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -37,7 +38,7 @@ const PostList = () => {
 
   return (
     <section className="flex flex-col p-4">
-      <div className="mt-5 mb-5 ml-auto mr-7">
+      <div className="mt-5 mb-10 ml-auto mr-5">
         <button
           id="new-post-button"
           type="button"
@@ -48,13 +49,13 @@ const PostList = () => {
           ✍️ New Post
         </button>
       </div>
-      <ul className="flex flex-wrap gap-5 p-2">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
         {isLoading ? (
           <Loading />
         ) : posts.length > 0 ? (
           posts.map((post) => <PostCard key={post.id} post={post} />)
         ) : (
-          <li className="text-gray-500 mx-auto">
+          <li className="text-gray-500 mx-auto col-span-full text-center">
             아무리 짧아도 좋아요! 오늘 느낀 감정 하나만 적어도 충분해요 😊
           </li>
         )}

@@ -38,7 +38,8 @@
   font-family: 'Pretendard-Regular';
 }
 
-h1 {
+h1,
+h2 {
   font-family: 'GmarketSansBold';
 }
 .common-btn {
@@ -57,7 +58,7 @@ h1 {
 }
 
 .common-box {
-  @apply flex w-full max-w-md flex-col gap-2 p-4;
+  @apply flex w-full max-w-md flex-col gap-1 rounded-2xl border-2 border-yellow-300 p-6 shadow-md;
 }
 
 .swiper-pagination-bullet {

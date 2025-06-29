@@ -39,13 +39,13 @@ const TodosList = () => {
   return (
     <>
       {sections.map(({ id, title, todos, emptyMsg, buttonText }) => (
-        <section key={id} className="flex flex-col p-5">
+        <section key={id} className="flex flex-col p-4">
           <h2 className="mb-4 text-lg font-bold ml-2">{title}</h2>
 
           {todos.length === 0 ? (
             <p className="m-5 text-center text-gray-500">{emptyMsg}</p>
           ) : (
-            <ul className="flex flex-wrap gap-5 p-4">
+            <ul className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-5">
               {todos.map((todo) => (
                 <TodosItem
                   key={todo.id}

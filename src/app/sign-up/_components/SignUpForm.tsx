@@ -38,7 +38,7 @@ const SignUpForm = () => {
           register={register}
           error={errors.nickname?.message}
         />
-        <button className="common-btn my-2" aria-label="회원가입">
+        <button className="common-btn !py-3 my-2" aria-label="회원가입">
           회원가입
         </button>
       </div>

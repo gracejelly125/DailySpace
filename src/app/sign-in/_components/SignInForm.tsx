@@ -25,7 +25,7 @@ const SignInForm = () => {
           register={register}
           error={errors.password?.message}
         />
-        <button className="common-btn my-2" aria-label="로그인">
+        <button className="common-btn !py-3 my-2" aria-label="로그인">
           로그인
         </button>
       </div>

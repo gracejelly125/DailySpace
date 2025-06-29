@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Autoplay, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { useAuth } from '@/providers/AuthProvider';
 
@@ -57,47 +59,51 @@ const HomeSection = () => {
             </motion.div>
           </div>
         ) : (
-          <div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
-            >
-              <Link href="/sign-in" className="common-btn !px-9 !py-3">
-                로그인
-              </Link>
-            </motion.div>
-            <div className="mt-14 flex flex-wrap gap-5 justify-center">
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.0, delay: 0.2 }}
-              >
-                <Image
-                  src="/assets/todolist.JPG"
-                  alt="투두리스트 사용 예시"
-                  width={400}
-                  height={300}
-                  className="object-contain"
-                />
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.0, delay: 0.6 }}
-              >
-                <Image
-                  src="/assets/blog.JPG"
-                  alt="블로그 사용 예시"
-                  width={400}
-                  height={300}
-                  className="object-contain"
-                />
-              </motion.div>
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
+          >
+            <Link href="/sign-in" className="common-btn !px-9 !py-3">
+              로그인
+            </Link>
+          </motion.div>
         )}
       </div>
+      <motion.div
+        className="mt-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.0, delay: 0.8 }}
+      >
+        <Swiper
+          modules={[Autoplay, Pagination]}
+          autoplay={{ delay: 2500, disableOnInteraction: false }}
+          pagination={{ clickable: true }}
+          loop={true}
+          spaceBetween={10}
+          className="max-w-lg mx-auto"
+        >
+          <SwiperSlide className="flex justify-center">
+            <Image
+              src="/assets/todolist.PNG"
+              alt="투두리스트 사용 예시"
+              width={500}
+              height={500}
+              className="object-contain"
+            />
+          </SwiperSlide>
+          <SwiperSlide className="flex justify-center">
+            <Image
+              src="/assets/blog.PNG"
+              alt="블로그 사용 예시"
+              width={500}
+              height={500}
+              className="object-contain"
+            />
+          </SwiperSlide>
+        </Swiper>
+      </motion.div>
     </div>
   );
 };
