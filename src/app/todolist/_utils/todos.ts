@@ -3,13 +3,17 @@ import { createClient } from '@/utils/supabase/client';
 
 const supabase = createClient();
 
-export const fetchTodos = async (): Promise<Todo[]> => {
+export const fetchTodos = async (userId: string): Promise<Todo[]> => {
   const { data, error } = await supabase
     .from('todos')
     .select('*')
-    .order('created_at', { ascending: false });
-  if (error) throw error;
-  return data as Todo[];
+    .eq('user_id', userId);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data || [];
 };
 
 export const addTodo = async (todo: Omit<Todo, 'id' | 'created_at'>) => {

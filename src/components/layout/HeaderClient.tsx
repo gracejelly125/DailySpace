@@ -54,7 +54,7 @@ const HeaderClient = () => {
         </>
 
         <>
-          <ul className="flex items-center gap-4">
+          <ul className="flex items-center gap-3">
             {isAuthenticated ? (
               <>
                 <li>
@@ -63,7 +63,7 @@ const HeaderClient = () => {
                   </Link>
                 </li>
                 <li>
-                  <button className="common-btn" onClick={() => logout()}>
+                  <button className="warn-btn" onClick={() => logout()}>
                     로그아웃
                   </button>
                 </li>

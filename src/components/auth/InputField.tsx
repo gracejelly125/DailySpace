@@ -33,7 +33,7 @@ const InputField = <T extends FieldValues>({
         <input
           className={`common-input w-full rounded-[8px] border p-3 text-caption-lm focus:outline-none ${
             error
-              ? 'border-red-500 focus:border-red-500'
+              ? 'border-red-600 focus:border-red-600'
               : 'border-gray-300 focus:border-gray-900'
           }`}
           type={isPassword && isVisible ? 'text' : type}
@@ -54,7 +54,7 @@ const InputField = <T extends FieldValues>({
         )}
       </div>
 
-      <p className="min-h-[20px] text-sm text-red-500">{error ?? '\u00A0'}</p>
+      <p className="min-h-[20px] text-sm text-red-600">{error ?? '\u00A0'}</p>
     </div>
   );
 };

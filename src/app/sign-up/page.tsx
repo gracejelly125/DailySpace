@@ -10,7 +10,7 @@ const SignUpPage = () => {
       <h2 className="text-xl font-bold mx-auto mt-5">회원가입</h2>
       <SignUpForm />
       <p className="mt-2 mb-2 mx-auto">이미 계정이 있으신가요?</p>
-      <Link className="mx-auto border-b-2 border-red-500 px-1" href="/sign-in">
+      <Link className="mx-auto border-b-2 border-red-600 px-1" href="/sign-in">
         로그인
       </Link>
     </div>

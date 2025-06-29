@@ -61,7 +61,7 @@ const MypageForm = ({
       <button
         type="button"
         onClick={handleDeleteAccount}
-        className="common-btn mt-10"
+        className="warn-btn mt-10"
       >
         계정 삭제 😭
       </button>

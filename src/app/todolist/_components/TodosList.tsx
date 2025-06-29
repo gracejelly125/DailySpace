@@ -1,17 +1,30 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 
+import { motion } from 'framer-motion';
 import { Square, SquareCheckBig } from 'lucide-react';
 
 import TodosItem from '@/app/todolist/_components/TodosItem';
 import { useTodosMutation } from '@/app/todolist/_hooks/useTodosMutation';
 import { useTodosQuery } from '@/app/todolist/_hooks/useTodosQuery';
 import Loading from '@/components/common/Loading';
+import { useAuth } from '@/providers/AuthProvider';
+
+const filterOptions: { id: 'all' | 'undone' | 'done'; label: string }[] = [
+  { id: 'all', label: '전체' },
+  { id: 'undone', label: '미완료' },
+  { id: 'done', label: '완료' },
+];
 
 const TodosList = () => {
-  const { data: todos = [], isPending, isError } = useTodosQuery();
+  const { user } = useAuth();
+  const userId = user?.id;
+
+  const { data: todos = [], isPending, isError } = useTodosQuery(userId!);
   const { deleteTodo, toggleStatus } = useTodosMutation();
+
+  const [filter, setFilter] = useState<'all' | 'undone' | 'done'>('all');
 
   const undoneTodos = todos.filter((todo) => !todo.status);
   const doneTodos = todos.filter((todo) => todo.status);
@@ -23,6 +36,7 @@ const TodosList = () => {
       todos: undoneTodos,
       emptyMsg: '지금은 비어 있어요. 새 할 일을 추가해보세요! 😉',
       buttonText: <Square size={18} />,
+      visible: filter === 'all' || filter === 'undone',
     },
     {
       id: 'done',
@@ -30,36 +44,66 @@ const TodosList = () => {
       todos: doneTodos,
       emptyMsg: '시작은 언제나 설레죠. 첫 번째 할 일을 완료해보세요! 😊',
       buttonText: <SquareCheckBig size={18} />,
+      visible: filter === 'all' || filter === 'done',
     },
   ];
 
-  if (isPending) return <Loading />;
-  if (isError) return <p className="p-5 text-red-500">에러가 발생했습니다.</p>;
+  if (!userId || isPending) return <Loading />;
+  if (isError) return <p className="p-5 text-red-600">에러가 발생했습니다.</p>;
 
   return (
-    <>
-      {sections.map(({ id, title, todos, emptyMsg, buttonText }) => (
-        <section key={id} className="flex flex-col p-4">
-          <h2 className="mb-4 text-lg font-bold ml-2">{title}</h2>
-
-          {todos.length === 0 ? (
-            <p className="m-5 text-center text-gray-500">{emptyMsg}</p>
-          ) : (
-            <ul className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-5">
-              {todos.map((todo) => (
-                <TodosItem
-                  key={todo.id}
-                  todo={todo}
-                  deleteButtonHandler={() => deleteTodo.mutate(todo.id)}
-                  cancelButtonHandler={() => toggleStatus.mutate(todo)}
-                  buttonText={buttonText}
+    <div>
+      {/* 필터 바 */}
+      <div className="relative flex justify-center">
+        <div className="flex gap-2 p-1 border border-indigo-600 rounded-full w-fit shadow-md">
+          {filterOptions.map(({ id, label }) => (
+            <button
+              key={id}
+              onClick={() => setFilter(id)}
+              className="relative px-4 py-2 rounded-full text-sm text-indigo-700"
+            >
+              {filter === id && (
+                <motion.div
+                  layoutId="filter-indicator"
+                  className="absolute inset-0 z-0 bg-indigo-600 rounded-full"
+                  transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                 />
-              ))}
-            </ul>
-          )}
-        </section>
-      ))}
-    </>
+              )}
+              <span
+                className={`relative z-10 ${filter === id ? 'text-white' : ''}`}
+              >
+                {label}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* 섹션 렌더링 */}
+      {sections
+        .filter((section) => section.visible)
+        .map(({ id, title, todos, emptyMsg, buttonText }) => (
+          <section key={id} className="flex flex-col p-4">
+            <h2 className="mb-6 text-lg font-bold ml-2">{title}</h2>
+
+            {todos.length === 0 ? (
+              <p className="m-5 text-center text-gray-500">{emptyMsg}</p>
+            ) : (
+              <ul className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-5 mx-auto">
+                {todos.map((todo) => (
+                  <TodosItem
+                    key={todo.id}
+                    todo={todo}
+                    deleteButtonHandler={() => deleteTodo.mutate(todo.id)}
+                    cancelButtonHandler={() => toggleStatus.mutate(todo)}
+                    buttonText={buttonText}
+                  />
+                ))}
+              </ul>
+            )}
+          </section>
+        ))}
+    </div>
   );
 };
 

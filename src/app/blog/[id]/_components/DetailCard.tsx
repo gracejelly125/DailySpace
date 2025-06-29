@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 
+import { ArrowLeft, Edit2, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -62,7 +63,7 @@ const DetailCard = ({ postId }: DetailCardProps) => {
   if (isLoading) return <Loading />;
   if (isError)
     return (
-      <div className="mt-10 text-center text-red-500">
+      <div className="mt-10 text-center text-red-600">
         데이터를 불러오는 중 문제가 발생했습니다.
       </div>
     );
@@ -70,30 +71,34 @@ const DetailCard = ({ postId }: DetailCardProps) => {
 
   return (
     <section className="mx-auto mt-10 max-w-3xl px-4">
-      <div className="mb-5 flex justify-between">
+      <div className="mb-5 flex justify-between items-center">
         <button
           id="back-button"
           type="button"
           aria-label="뒤로 가기"
           onClick={() => router.push('/blog')}
-          className="common-btn !rounded-full"
+          className="flex items-center justify-center rounded-md border border-gray-300 bg-transparent p-2 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
         >
-          ←
+          <ArrowLeft size={20} />
         </button>
-        <div className="flex gap-2">
+
+        <div className="flex gap-3">
           <Link
             href={`/blog/new?edit=${postDetailData.id}`}
-            className="common-btn !py-2.5"
+            className="flex items-center gap-2 common-btn"
           >
+            <Edit2 size={18} />
             수정
           </Link>
+
           <button
             id="delete-button"
             type="button"
             aria-label="삭제"
             onClick={handleDeletePost}
-            className="common-btn !bg-red-500 hover:!bg-red-600"
+            className="flex items-center gap-2 warn-btn"
           >
+            <Trash2 size={18} />
             삭제
           </button>
         </div>

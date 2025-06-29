@@ -6,20 +6,17 @@ import { createClient } from '@/utils/supabase/client';
 
 const supabase = createClient();
 
-export const fetchPostsData = async () => {
-  try {
-    const { data: postsData, error } = await supabase
-      .from('posts')
-      .select('*')
-      .order('created_at', { ascending: false });
+export const fetchPostsData = async (userId: string): Promise<Post[]> => {
+  const { data, error } = await supabase
+    .from('posts')
+    .select('*')
+    .eq('user_id', userId);
 
-    if (error) throw error;
-
-    return postsData;
-  } catch (error) {
-    console.error('포스트 불러오기에 실패했습니다.', error);
-    throw error;
+  if (error) {
+    throw new Error(error.message);
   }
+
+  return data || [];
 };
 
 export const uploadPostImageFile = async (file: File) => {

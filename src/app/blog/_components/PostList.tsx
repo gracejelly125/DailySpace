@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import PostCard from '@/app/blog/_components/PostCard';
 import { fetchPostsData } from '@/app/blog/_utils/post';
 import Loading from '@/components/common/Loading';
-import { useAuthStore } from '@/store/useAuthStore';
+import { useAuth } from '@/providers/AuthProvider';
 import { Post } from '@/types/types';
 
 const PostList = () => {
@@ -15,19 +15,28 @@ const PostList = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const router = useRouter();
-  const isAuthenticated = useAuthStore();
+  const { user, isAuthenticated } = useAuth();
 
   useEffect(() => {
     const fetchPosts = async () => {
+      if (!user?.id) {
+        setPosts([]);
+        setIsLoading(false);
+        return;
+      }
       setIsLoading(true);
-      const postsData = await fetchPostsData();
-
-      setPosts(postsData);
+      try {
+        const postsData = await fetchPostsData(user.id);
+        setPosts(postsData);
+      } catch (error) {
+        console.error('Failed to fetch posts:', error);
+        setPosts([]);
+      }
       setIsLoading(false);
     };
 
     fetchPosts();
-  }, []);
+  }, [user?.id]);
 
   const handleGoToNewPost = () => {
     if (!isAuthenticated) {
@@ -49,7 +58,7 @@ const PostList = () => {
           ✍️ New Post
         </button>
       </div>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 mx-auto">
         {isLoading ? (
           <Loading />
         ) : posts.length > 0 ? (
