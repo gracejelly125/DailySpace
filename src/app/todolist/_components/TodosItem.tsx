@@ -30,7 +30,7 @@ const TodosItem = ({
       </span>
       <div className="flex items-center h-full mt-2">
         <div className="mr-3">
-          <button onClick={cancelButtonHandler} className="text-red-500">
+          <button onClick={cancelButtonHandler} className="text-red-600">
             {buttonText}
           </button>
         </div>
@@ -64,7 +64,7 @@ const TodosItem = ({
       <div className="absolute bottom-2 right-3">
         <button
           onClick={deleteButtonHandler}
-          className="text-red-500 hover:text-red-600"
+          className="text-red-600 hover:text-red-600"
         >
           <Trash2 size={18} />
         </button>

@@ -23,8 +23,8 @@ const MypageForm = ({
   } = useMypage(currentNickname, setCurrentNickname);
 
   return (
-    <div className="common-form flex flex-col items-center">
-      <div className="common-box">
+    <div className="common-form flex flex-col items-center mt-2">
+      <div className="common-box !p-5">
         {/* 닉네임 변경 폼 */}
         <form
           onSubmit={nicknameForm.handleSubmit(handleNicknameChange)}
@@ -61,7 +61,7 @@ const MypageForm = ({
       <button
         type="button"
         onClick={handleDeleteAccount}
-        className="common-btn mt-20"
+        className="warn-btn mt-10"
       >
         계정 삭제 😭
       </button>
