@@ -63,7 +63,7 @@ const DetailCard = ({ postId }: DetailCardProps) => {
   if (isLoading) return <Loading />;
   if (isError)
     return (
-      <div className="mt-10 text-center text-red-600">
+      <div className="mt-10 text-center text-warn">
         데이터를 불러오는 중 문제가 발생했습니다.
       </div>
     );
@@ -77,7 +77,7 @@ const DetailCard = ({ postId }: DetailCardProps) => {
           type="button"
           aria-label="뒤로 가기"
           onClick={() => router.push('/blog')}
-          className="flex items-center justify-center rounded-md border border-gray-300 bg-transparent p-2 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="flex items-center justify-center rounded-md border bg-transparent p-2 text-textSub"
         >
           <ArrowLeft size={20} />
         </button>
@@ -104,8 +104,8 @@ const DetailCard = ({ postId }: DetailCardProps) => {
         </div>
       </div>
 
-      <article className="flex flex-col border border-gray-200 bg-white p-6 shadow-sm">
-        <time className="ml-auto text-gray-400">
+      <article className="flex flex-col border bg-background p-6 shadow-sm">
+        <time className="ml-auto text-textSub">
           {dayjs(postDetailData.created_at).format(
             'YYYY년 M월 D일 dddd HH:mm:ss',
           )}
@@ -140,20 +140,20 @@ const DetailCard = ({ postId }: DetailCardProps) => {
               </Swiper>
             </div>
             <div className="flex-1">
-              <h2 className="mt-6 text-center text-xl font-bold text-gray-900">
+              <h2 className="mt-6 text-center text-xl font-bold text-textMain">
                 {postDetailData.title}
               </h2>
-              <p className="mt-2 text-center whitespace-pre-wrap text-gray-700">
+              <p className="mt-2 text-center whitespace-pre-wrap text-textSub">
                 {postDetailData.content}
               </p>
             </div>
           </div>
         ) : (
           <div className="flex h-96 flex-col items-center justify-center text-center">
-            <h2 className="mb-2 text-xl font-bold text-gray-900">
+            <h2 className="mb-2 text-xl font-bold text-textMain">
               {postDetailData.title}
             </h2>
-            <p className="text-gray-700 whitespace-pre-wrap">
+            <p className="text-textSub whitespace-pre-wrap">
               {postDetailData.content}
             </p>
           </div>

@@ -57,7 +57,7 @@ const TodosForm = () => {
             {...register('title', { required: '제목을 입력해주세요.' })}
           />
           {errors.title && (
-            <p className="text-red-600 text-xs mt-1 ml-1">
+            <p className="text-warn text-xs mt-1 ml-1">
               {errors.title.message}
             </p>
           )}
@@ -72,7 +72,7 @@ const TodosForm = () => {
             {...register('content', { required: '내용을 입력해주세요.' })}
           />
           {errors.content && (
-            <p className="text-red-600 text-xs mt-1 ml-1">
+            <p className="text-warn text-xs mt-1 ml-1">
               {errors.content.message}
             </p>
           )}

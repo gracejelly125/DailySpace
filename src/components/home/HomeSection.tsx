@@ -14,7 +14,7 @@ const HomeSection = () => {
   return (
     <div className="text-center mt-10 px-4">
       <motion.h1
-        className="text-3xl font-extrabold mb-6 text-gray-800"
+        className="text-3xl font-extrabold mb-6 text-textBlack"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.1 }}
@@ -23,17 +23,17 @@ const HomeSection = () => {
       </motion.h1>
 
       <motion.p
-        className="max-w-xl mx-auto text-lg text-gray-700 leading-relaxed"
+        className="max-w-xl mx-auto text-lg text-textMain leading-relaxed"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
       >
-        📝 <strong className="text-indigo-700">투두리스트</strong> 로 하루하루
+        📝 <strong className="text-primary">투두리스트</strong> 로 하루하루
         계획을 체계적으로 관리하고, <br />
-        ✍️ <strong className="text-indigo-700">블로그</strong> 로 나만의 소중한
+        ✍️ <strong className="text-primary">블로그</strong> 로 나만의 소중한
         이야기를 기록해보세요. <br />
         작지만 특별한 매일의 순간들을{' '}
-        <em className="text-indigo-700">함께 담아가는 공간</em> 입니다.
+        <em className="text-primary">함께 담아가는 공간</em> 입니다.
       </motion.p>
 
       <div className="mt-10 flex items-center justify-center">
