@@ -14,7 +14,7 @@ const NewPage = async ({ searchParams }: NewPageProps) => {
 
   return (
     <>
-      <h1 className="text-center text-2xl font-bold mt-5">
+      <h1 className="text-center text-2xl font-bold mt-5 text-textBlack">
         {searchParams.edit ? 'Update Post' : 'New Post'}
       </h1>
       <PostForm postDetailData={postDetailData} />

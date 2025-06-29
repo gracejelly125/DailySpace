@@ -163,7 +163,9 @@ const PostForm = ({ postDetailData }: PostFormProps) => {
         </section>
 
         <section className="mb-4 mt-8">
-          <label htmlFor="title">제목</label>
+          <label htmlFor="title" className="text-textMain">
+            제목
+          </label>
           <input
             type="text"
             id="title"
@@ -176,7 +178,9 @@ const PostForm = ({ postDetailData }: PostFormProps) => {
         </section>
 
         <section className="mb-4">
-          <label htmlFor="content">내용</label>
+          <label htmlFor="content" className="text-textMain">
+            내용
+          </label>
           <textarea
             id="content"
             value={content}

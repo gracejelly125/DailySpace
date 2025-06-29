@@ -22,17 +22,17 @@ const HeaderClient = () => {
   return (
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/10 backdrop-blur-md' : 'bg-transparent'
+        isScrolled ? 'bg-background/10 backdrop-blur-md' : 'bg-transparent'
       }`}
     >
       <nav
-        className="mx-auto max-w-4xl flex justify-between items-center py-4 px-6"
-        aria-label="주요 탐색"
+        className="mx-auto max-w-4xl flex justify-between items-center py-3 px-6"
+        aria-label="사용자 메뉴"
       >
         <>
           <ul className="flex items-center gap-4">
             <li>
-              <Link href="/" className="common-nav">
+              <Link href="/" className="common-nav !text-primary">
                 홈
               </Link>
             </li>

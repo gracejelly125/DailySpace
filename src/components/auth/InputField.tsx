@@ -25,17 +25,13 @@ const InputField = <T extends FieldValues>({
 
   return (
     <div className="flex flex-col gap-1">
-      <label className="text-title-mm" htmlFor={id as string}>
+      <label className="text-textMain" htmlFor={id as string}>
         {label}
       </label>
 
       <div className="relative">
         <input
-          className={`common-input w-full rounded-[8px] border p-3 text-caption-lm focus:outline-none ${
-            error
-              ? 'border-red-600 focus:border-red-600'
-              : 'border-gray-300 focus:border-gray-900'
-          }`}
+          className="common-input w-full rounded-[8px] border p-3 text-caption-lm focus:outline-none"
           type={isPassword && isVisible ? 'text' : type}
           id={id as string}
           autoComplete="off"
@@ -45,7 +41,7 @@ const InputField = <T extends FieldValues>({
         {isPassword && (
           <button
             type="button"
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-textSub"
             onClick={() => setIsVisible(!isVisible)}
             aria-label="비밀번호 보기"
           >
@@ -54,7 +50,7 @@ const InputField = <T extends FieldValues>({
         )}
       </div>
 
-      <p className="min-h-[20px] text-sm text-red-600">{error ?? '\u00A0'}</p>
+      <p className="min-h-[20px] text-sm text-warn">{error ?? '\u00A0'}</p>
     </div>
   );
 };

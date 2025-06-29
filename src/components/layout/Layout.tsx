@@ -21,10 +21,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   }
 
   return (
-    <>
+    <div className="bg-background min-h-screen">
       <Header />
-      <main className="max-w-4xl mx-auto p-4 mt-20">{children}</main>
-    </>
+      <main className="max-w-4xl mx-auto pt-20 px-5 pb-5">{children}</main>
+    </div>
   );
 };
 

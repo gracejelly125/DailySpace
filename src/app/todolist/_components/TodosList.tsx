@@ -49,28 +49,28 @@ const TodosList = () => {
   ];
 
   if (!userId || isPending) return <Loading />;
-  if (isError) return <p className="p-5 text-red-600">에러가 발생했습니다.</p>;
+  if (isError) return <p className="p-5 text-warn">에러가 발생했습니다.</p>;
 
   return (
     <div>
       {/* 필터 바 */}
       <div className="relative flex justify-center">
-        <div className="flex gap-2 p-1 border border-indigo-600 rounded-full w-fit shadow-md">
+        <div className="flex gap-2 p-1 border border-primary rounded-full w-fit shadow-md">
           {filterOptions.map(({ id, label }) => (
             <button
               key={id}
               onClick={() => setFilter(id)}
-              className="relative px-4 py-2 rounded-full text-sm text-indigo-700"
+              className="relative px-4 py-2 rounded-full text-sm text-primary"
             >
               {filter === id && (
                 <motion.div
                   layoutId="filter-indicator"
-                  className="absolute inset-0 z-0 bg-indigo-600 rounded-full"
+                  className="absolute inset-0 z-0 bg-primary rounded-full"
                   transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                 />
               )}
               <span
-                className={`relative z-10 ${filter === id ? 'text-white' : ''}`}
+                className={`relative z-10 ${filter === id ? 'text-onPrimary' : ''}`}
               >
                 {label}
               </span>
@@ -84,10 +84,12 @@ const TodosList = () => {
         .filter((section) => section.visible)
         .map(({ id, title, todos, emptyMsg, buttonText }) => (
           <section key={id} className="flex flex-col p-4">
-            <h2 className="mb-6 text-lg font-bold ml-2">{title}</h2>
+            <h2 className="mb-6 text-lg font-bold ml-2 text-textBlack">
+              {title}
+            </h2>
 
             {todos.length === 0 ? (
-              <p className="m-5 text-center text-gray-500">{emptyMsg}</p>
+              <p className="m-5 text-center text-textSub">{emptyMsg}</p>
             ) : (
               <ul className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 gap-5 mx-auto">
                 {todos.map((todo) => (

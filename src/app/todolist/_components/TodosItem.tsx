@@ -23,14 +23,14 @@ const TodosItem = ({
   return (
     <li className="relative h-[200px] w-[200px] bg-yellow-100 border border-yellow-300 p-4 shadow-md">
       <span
-        className="absolute -top-2 left-1/2 text-2xl rotate-[15deg] drop-shadow"
+        className="absolute -top-3 left-1/2 text-2xl rotate-[10deg] drop-shadow"
         aria-hidden="true"
       >
         📌
       </span>
       <div className="flex items-center h-full mt-2">
         <div className="mr-3">
-          <button onClick={cancelButtonHandler} className="text-red-600">
+          <button onClick={cancelButtonHandler} className="text-warn">
             {buttonText}
           </button>
         </div>
@@ -62,10 +62,7 @@ const TodosItem = ({
       </time>
 
       <div className="absolute bottom-2 right-3">
-        <button
-          onClick={deleteButtonHandler}
-          className="text-red-600 hover:text-red-600"
-        >
+        <button onClick={deleteButtonHandler} className="text-warn">
           <Trash2 size={18} />
         </button>
       </div>
