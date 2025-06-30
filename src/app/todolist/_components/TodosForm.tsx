@@ -43,7 +43,7 @@ const TodosForm = () => {
   };
 
   return (
-    <div className="flex flex-col border-b p-4">
+    <div className="flex flex-col p-4">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="common-form flex flex-wrap items-center gap-4"
