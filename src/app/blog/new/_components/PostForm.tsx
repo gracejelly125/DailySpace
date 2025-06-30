@@ -197,7 +197,7 @@ const PostForm = ({ postDetailData }: PostFormProps) => {
             <article key={index} className="relative w-full">
               <label
                 htmlFor={`image-upload-${index}`}
-                className="flex aspect-square cursor-pointer items-center justify-center rounded-md border border-gray-300"
+                className="flex aspect-square cursor-pointer items-center justify-center rounded-md border border-inputBorder bg-inputBg"
               >
                 {imageUrls[index] ? (
                   <Image

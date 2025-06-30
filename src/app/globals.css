@@ -44,9 +44,17 @@
   --color-text-sub: #666666;
   --color-warn-red: #dc2626;
   --color-on-warn-red: #ffffff;
-
   --color-text-black: #000000;
   --color-text-white: #ffffff;
+  --color-primary-bg: #eef2ff;
+  --color-warn-bg: #fef2f2;
+  --color-memo-bg: #fef9c3;
+  --color-memo-border: #fde68a;
+  --color-post-bg: #f9fafb;
+  --color-post-border: #d1d5db;
+  --color-placeholder: #9ca3af;
+  --color-input-bg: #ffffff;
+  --color-input-border: #e5e7eb;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -60,9 +68,17 @@
     --color-text-sub: #9ca3af;
     --color-warn-red: #dc2626;
     --color-on-warn-red: #ffffff;
-
     --color-text-black: #ffffff;
     --color-text-white: #000000;
+    --color-primary-bg: #1e1b4b;
+    --color-warn-bg: #450a0a;
+    --color-memo-bg: #1e2f4a;
+    --color-memo-border: #3a5588;
+    --color-post-bg: #1f2937;
+    --color-post-border: #374151;
+    --color-placeholder: #6b7280;
+    --color-input-bg: #1f2937;
+    --color-input-border: #4b5563;
   }
 }
 
@@ -75,26 +91,26 @@ h2 {
   font-family: 'GmarketSansBold';
 }
 .common-btn {
-  @apply border-primary hover:bg-primary text-primary hover:text-onPrimary rounded-full border bg-indigo-50 px-4 py-2 font-medium transition-colors focus:outline-none;
+  @apply bg-primaryBg rounded-full border border-primary px-4 py-2 font-medium text-primary transition-colors hover:bg-primary hover:text-onPrimary focus:outline-none;
 }
 
 .warn-btn {
-  @apply hover:text-onWarn border-warn hover:bg-warn text-warn rounded-full border bg-red-50 px-4 py-2 font-medium transition-colors focus:outline-none;
+  @apply bg-warnBg rounded-full border border-warn px-4 py-2 font-medium text-warn transition-colors hover:bg-warn hover:text-onWarn focus:outline-none;
 }
 .common-form {
   @apply mx-auto w-full p-5;
 }
 
 .common-input {
-  @apply focus:ring-primary rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2;
+  @apply bg-inputBg border-inputBorder placeholder-placeholder rounded-md border p-2 text-textMain focus:outline-none focus:ring-2 focus:ring-primary;
 }
 
 .common-nav {
-  @apply text-textBlack inline-block rounded-lg px-4 py-2 text-lg font-bold;
+  @apply inline-block rounded-lg px-4 py-2 text-lg font-bold text-textBlack;
 }
 
 .common-box {
-  @apply border-primary flex w-full max-w-md flex-col gap-1 rounded-2xl border p-6 shadow-md;
+  @apply flex w-full max-w-md flex-col gap-1 rounded-2xl border border-primary p-6 shadow-md;
 }
 
 .swiper-pagination-bullet {

@@ -71,13 +71,13 @@ const DetailCard = ({ postId }: DetailCardProps) => {
 
   return (
     <section className="mx-auto mt-10 max-w-3xl px-4">
-      <div className="mb-5 flex justify-between items-center">
+      <div className="mb-8 flex justify-between items-center">
         <button
           id="back-button"
           type="button"
           aria-label="뒤로 가기"
           onClick={() => router.push('/blog')}
-          className="flex items-center justify-center rounded-md border bg-transparent p-2 text-textSub"
+          className="flex items-center justify-center rounded-md border border-postBorder bg-transparent p-2 text-textSub"
         >
           <ArrowLeft size={20} />
         </button>
@@ -104,7 +104,7 @@ const DetailCard = ({ postId }: DetailCardProps) => {
         </div>
       </div>
 
-      <article className="flex flex-col border bg-background p-6 shadow-sm">
+      <article className="flex flex-col border border-postBorder bg-postBg p-6 shadow-sm rounded-xl">
         <time className="ml-auto text-textSub">
           {dayjs(postDetailData.created_at).format(
             'YYYY년 M월 D일 dddd HH:mm:ss',
@@ -140,9 +140,9 @@ const DetailCard = ({ postId }: DetailCardProps) => {
               </Swiper>
             </div>
             <div className="flex-1">
-              <h2 className="mt-6 text-center text-xl font-bold text-textMain">
+              <h3 className="mt-6 text-center text-xl font-bold text-textMain">
                 {postDetailData.title}
-              </h2>
+              </h3>
               <p className="mt-2 text-center whitespace-pre-wrap text-textSub">
                 {postDetailData.content}
               </p>

@@ -21,7 +21,7 @@ const TodosItem = ({
   const dayjs = useDayjs();
 
   return (
-    <li className="relative h-[200px] w-[200px] bg-yellow-100 border border-yellow-300 p-4 shadow-md">
+    <li className="relative h-[200px] w-[200px] bg-memoBg border border-memoBorder p-4 shadow-md">
       <span
         className="absolute -top-3 left-1/2 text-2xl rotate-[10deg] drop-shadow"
         aria-hidden="true"
@@ -38,14 +38,14 @@ const TodosItem = ({
         <div className="flex flex-col space-y-1">
           <p
             className={`font-bold break-words leading-5 ${
-              todo.status ? 'text-gray-400 line-through' : 'text-gray-800'
+              todo.status ? 'text-gray-400 line-through' : 'text-textMain'
             }`}
           >
             {todo.title}
           </p>
           <p
             className={`break-words leading-5 ${
-              todo.status ? 'text-gray-400 line-through' : 'text-gray-700'
+              todo.status ? 'text-gray-400 line-through' : 'text-textSub'
             }`}
           >
             {todo.content}
@@ -54,7 +54,7 @@ const TodosItem = ({
       </div>
 
       <time
-        className={`absolute top-8 left-3 text-xs text-gray-600 ${
+        className={`absolute top-8 left-3 text-xs text-textSub ${
           todo.status ? '!text-gray-400 line-through' : ''
         }`}
       >
