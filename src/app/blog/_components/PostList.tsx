@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import PostCard from '@/app/blog/_components/PostCard';
 import { fetchPostsData } from '@/app/blog/_utils/post';
 import Loading from '@/components/common/Loading';
-import { useAuth } from '@/providers/AuthProvider';
+import useAuthStore from '@/store/useAuthStore';
 import { Post } from '@/types/types';
 
 const PostList = () => {
@@ -15,7 +15,7 @@ const PostList = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const router = useRouter();
-  const { user, isAuthenticated } = useAuth();
+  const { user, isLoggedIn } = useAuthStore();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -39,7 +39,7 @@ const PostList = () => {
   }, [user?.id]);
 
   const handleGoToNewPost = () => {
-    if (!isAuthenticated) {
+    if (!isLoggedIn) {
       return;
     }
     router.push(`/blog/new`);

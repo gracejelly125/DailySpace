@@ -8,7 +8,7 @@ import Link from 'next/link';
 const SignUpPrompt = () => {
   return (
     <>
-      <p className="mt-2 mb-4 mx-auto text-textBlack">아직 계정이 없으신가요?</p>
+      <p className="mt-4 mb-4 mx-auto text-textBlack">아직 계정이 없으신가요?</p>
 
       <motion.div
         className="mx-auto"

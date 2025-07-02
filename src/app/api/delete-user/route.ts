@@ -29,6 +29,7 @@ export const DELETE = async (request: Request) => {
 
     try {
       await supabase.from('todolist').delete().eq('user_id', userId);
+      await supabase.from('post').delete().eq('user_id', userId);
 
       const { error: authError } = await supabase.auth.admin.deleteUser(userId);
 

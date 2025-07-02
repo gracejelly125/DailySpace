@@ -4,15 +4,18 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { useEffect } from 'react';
 
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { z } from 'zod';
 
+import { signout } from '@/app/actions/auth';
 import {
   requestDeleteUser,
   updateNickname,
   updatePassword,
 } from '@/app/mypage/_utils/profile';
+import useAuthStore from '@/store/useAuthStore';
 
 const nicknameSchema = z.object({
   newNickname: z
@@ -39,6 +42,9 @@ const useMypage = (
   currentNickname: string,
   setCurrentNickname: React.Dispatch<React.SetStateAction<string>>,
 ) => {
+  const router = useRouter();
+  const clearAuth = useAuthStore((state) => state.clearAuth);
+
   const nicknameForm = useForm<NicknameFormValues>({
     resolver: zodResolver(nicknameSchema),
     mode: 'onChange',
@@ -97,7 +103,14 @@ const useMypage = (
       return;
     }
 
-    window.location.href = '/';
+    try {
+      await signout();
+      clearAuth();
+      toast.success('계정이 삭제되었습니다.');
+      router.replace('/sign-in');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return {

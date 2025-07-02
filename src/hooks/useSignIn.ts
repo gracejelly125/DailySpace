@@ -5,9 +5,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { z } from 'zod';
 
-import { useAuth } from '@/providers/AuthProvider';
+import useAuthStore from '@/store/useAuthStore';
 import { SignInDataType } from '@/types/types';
 
 const signinSchema = z.object({
@@ -19,14 +20,14 @@ const signinSchema = z.object({
 });
 
 const useSignIn = () => {
-  const { login } = useAuth();
+  const login = useAuthStore((state) => state.login);
 
   const {
     register,
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm({
+  } = useForm<SignInDataType>({
     mode: 'onChange',
     resolver: zodResolver(signinSchema),
     defaultValues: {
@@ -45,6 +46,11 @@ const useSignIn = () => {
       window.location.href = '/';
     } catch (error) {
       console.error('로그인 중 오류 발생:', error);
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : '로그인 중 오류가 발생했습니다.',
+      );
     }
   };
 

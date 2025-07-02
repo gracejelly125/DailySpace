@@ -9,7 +9,7 @@ import TodosItem from '@/app/todolist/_components/TodosItem';
 import { useTodosMutation } from '@/app/todolist/_hooks/useTodosMutation';
 import { useTodosQuery } from '@/app/todolist/_hooks/useTodosQuery';
 import Loading from '@/components/common/Loading';
-import { useAuth } from '@/providers/AuthProvider';
+import useAuthStore from '@/store/useAuthStore';
 
 const filterOptions: { id: 'all' | 'undone' | 'done'; label: string }[] = [
   { id: 'all', label: '전체' },
@@ -18,7 +18,7 @@ const filterOptions: { id: 'all' | 'undone' | 'done'; label: string }[] = [
 ];
 
 const TodosList = () => {
-  const { user } = useAuth();
+  const { user } = useAuthStore();
   const userId = user?.id;
 
   const { data: todos = [], isPending, isError } = useTodosQuery(userId!);

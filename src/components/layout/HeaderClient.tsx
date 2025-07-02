@@ -5,12 +5,14 @@ import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 
-import { useAuth } from '@/providers/AuthProvider';
+import { useSignout } from '@/hooks/useSignout';
+import useAuthStore from '@/store/useAuthStore';
 
 const HeaderClient = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { isAuthenticated, logout } = useAuth();
+  const { isLoggedIn } = useAuthStore();
+  const { handleLogout } = useSignout();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,7 +39,7 @@ const HeaderClient = () => {
           </Link>
 
           <ul className="hidden md:flex items-center gap-4">
-            {isAuthenticated && (
+            {isLoggedIn && (
               <>
                 <li>
                   <Link href="/todolist" className="common-nav">
@@ -55,7 +57,7 @@ const HeaderClient = () => {
         </div>
 
         <ul className="hidden md:flex items-center gap-3">
-          {isAuthenticated ? (
+          {isLoggedIn ? (
             <>
               <li>
                 <Link href="/mypage" className="common-btn inline-block">
@@ -63,7 +65,7 @@ const HeaderClient = () => {
                 </Link>
               </li>
               <li>
-                <button className="warn-btn" onClick={logout}>
+                <button className="warn-btn" onClick={handleLogout}>
                   로그아웃
                 </button>
               </li>
@@ -95,7 +97,7 @@ const HeaderClient = () => {
       {mobileMenuOpen && (
         <div className="md:hidden bg-background/90 backdrop-blur-md px-6 pb-6 -mt-2">
           <ul className="flex flex-col">
-            {isAuthenticated && (
+            {isLoggedIn && (
               <>
                 <li>
                   <Link
@@ -118,7 +120,7 @@ const HeaderClient = () => {
               </>
             )}
             <li className="px-3">
-              {isAuthenticated ? (
+              {isLoggedIn ? (
                 <>
                   <Link
                     href="/mypage"
@@ -130,7 +132,7 @@ const HeaderClient = () => {
                   <button
                     className="warn-btn w-full"
                     onClick={() => {
-                      logout();
+                      handleLogout();
                       setMobileMenuOpen(false);
                     }}
                   >
