@@ -54,7 +54,7 @@ const TodosList = () => {
   return (
     <div>
       {/* 필터 바 */}
-      <div className="relative flex justify-center">
+      <div className="relative flex justify-center mb-6">
         <div className="flex gap-2 p-1 border border-primary rounded-full w-fit shadow-md">
           {filterOptions.map(({ id, label }) => (
             <button
