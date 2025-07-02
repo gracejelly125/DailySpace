@@ -14,7 +14,7 @@ const Mypage = () => {
         const userProfile = await fetchUserProfile();
         setCurrentNickname(userProfile?.nickname ?? 'Guest');
       } catch (error) {
-        console.error('fetchUserProfile error:', error);
+        console.error('유저 데이터 불러오기 실패:', error);
         setCurrentNickname('Guest');
       }
     };

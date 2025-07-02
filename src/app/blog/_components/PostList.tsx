@@ -29,7 +29,7 @@ const PostList = () => {
         const postsData = await fetchPostsData(user.id);
         setPosts(postsData);
       } catch (error) {
-        console.error('Failed to fetch posts:', error);
+        console.error('포스트 데이터 불러오기 실패:', error);
         setPosts([]);
       }
       setIsLoading(false);

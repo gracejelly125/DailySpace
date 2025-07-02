@@ -17,7 +17,7 @@ export const fetchUserProfile = async () => {
     .single();
 
   if (error) {
-    console.error('유저 정보를 불러오지 못했습니다!', error);
+    console.error('유저 정보 불러오기 실패:', error);
     return;
   }
 

@@ -6,6 +6,7 @@ import { ArrowLeft, Edit2, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -48,7 +49,7 @@ const DetailCard = ({ postId }: DetailCardProps) => {
   }, [postId]);
 
   const handleDeletePost = async () => {
-    const confirmed = window.confirm('정말로 게시물을 삭제하시겠습니까?');
+    const confirmed = window.confirm('정말로 포스트를 삭제하시겠습니까?');
     if (!confirmed) return;
 
     try {
@@ -56,7 +57,8 @@ const DetailCard = ({ postId }: DetailCardProps) => {
       router.push('/blog');
     } catch (error) {
       setIsError(true);
-      console.error('게시물 삭제에 실패했습니다.', error);
+      console.error('포스트 삭제 실패:', error);
+      toast.error('포스트 삭제에 실패했습니다.');
     }
   };
 
