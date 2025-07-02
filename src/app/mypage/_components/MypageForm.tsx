@@ -28,14 +28,17 @@ const MypageForm = ({
         {/* 닉네임 변경 폼 */}
         <form
           onSubmit={nicknameForm.handleSubmit(handleNicknameChange)}
-          className="flex items-start"
+          className="flex flex-col md:flex-row items-start gap-2 md:gap-0"
         >
           <InputField
             id="newNickname"
             register={nicknameForm.register}
             error={nicknameForm.formState.errors.newNickname?.message}
           />
-          <button type="submit" className="common-btn !px-6 ml-auto mt-1">
+          <button
+            type="submit"
+            className="common-btn md:ml-auto mt-2 md:mt-1 w-full md:w-auto"
+          >
             닉네임 변경
           </button>
         </form>
@@ -43,7 +46,7 @@ const MypageForm = ({
         {/* 비밀번호 변경 폼 */}
         <form
           onSubmit={passwordForm.handleSubmit(handlePasswordChange)}
-          className="flex items-start"
+          className="flex flex-col md:flex-row items-start gap-2 md:gap-0 mt-4"
         >
           <InputField
             id="newPassword"
@@ -51,7 +54,10 @@ const MypageForm = ({
             register={passwordForm.register}
             error={passwordForm.formState.errors.newPassword?.message}
           />
-          <button type="submit" className="common-btn ml-auto mt-1">
+          <button
+            type="submit"
+            className="common-btn md:ml-auto mt-2 md:mt-1 w-full md:w-auto"
+          >
             비밀번호 변경
           </button>
         </form>

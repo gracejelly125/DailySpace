@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 import { updatePost } from '@/app/blog/_actions/update';
 import { addPost, uploadPostImageFile } from '@/app/blog/_utils/post';
@@ -48,8 +49,8 @@ const PostForm = ({ postDetailData }: PostFormProps) => {
         setContent(data.content);
         setImageUrls(data.image_url || []);
         setImages([]);
-      } catch (err) {
-        console.error('최신 포스트 불러오기 실패:', err);
+      } catch (error) {
+        console.error('최신 포스트 불러오기 실패:', error);
       } finally {
         setIsFetching(false);
       }
@@ -95,7 +96,8 @@ const PostForm = ({ postDetailData }: PostFormProps) => {
         router.push('/blog');
       }
     } catch (error) {
-      console.error('게시글 저장 실패:', error);
+      console.error('포스트 저장 실패:', error);
+      toast.error('포스트 저장에 실패했습니다.');
     } finally {
       setIsLoading(false);
     }

@@ -3,6 +3,7 @@
 import React from 'react';
 
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 import { useTodosMutation } from '@/app/todolist/_hooks/useTodosMutation';
 import { getId } from '@/app/todolist/_utils/auth';
@@ -25,7 +26,7 @@ const TodosForm = () => {
     const userId = await getId();
 
     if (!userId) {
-      alert('로그인이 필요합니다.');
+      toast.error('로그인이 필요합니다.');
       return;
     }
 

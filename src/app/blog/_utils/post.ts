@@ -36,7 +36,7 @@ export const uploadPostImageFile = async (file: File) => {
 
     return publicUrlData.publicUrl;
   } catch (error) {
-    console.error('이미지 스토리지 저장에 실패했습니다.', error);
+    console.error('이미지 스토리지 저장 실패:', error);
     throw error;
   }
 };
@@ -114,7 +114,7 @@ export const addPost = async ({
 
     return postsData;
   } catch (error) {
-    console.error('포스트 저장에 실패했습니다.', error);
+    console.error('포스트 저장 실패:', error);
     throw error;
   }
 };
@@ -133,7 +133,7 @@ export const fetchPostDetail = async (id: Post['id']) => {
 
     return detailData;
   } catch (error) {
-    console.error('포스트 디테일 불러오기에 실패했습니다.', error);
+    console.error('포스트 디테일 불러오기 실패:', error);
     throw error;
   }
 };
@@ -149,7 +149,7 @@ export const deletePost = async (id: Post['id']) => {
 
     return detailData;
   } catch (error) {
-    console.error('포스트 삭제에 실패했습니다.', error);
+    console.error('포스트 삭제 실패:', error);
     throw error;
   }
 };

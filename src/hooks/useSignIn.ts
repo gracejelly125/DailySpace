@@ -1,11 +1,14 @@
-"use client"
+'use client';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+
+import { useEffect } from 'react';
+
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 import { useAuth } from '@/providers/AuthProvider';
 import { SignInDataType } from '@/types/types';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 
 const signinSchema = z.object({
   email: z
@@ -16,7 +19,7 @@ const signinSchema = z.object({
 });
 
 const useSignIn = () => {
-    const { login } = useAuth();
+  const { login } = useAuth();
 
   const {
     register,
@@ -41,7 +44,7 @@ const useSignIn = () => {
       await login(values);
       window.location.href = '/';
     } catch (error) {
-        console.error('로그인 중 오류가 발생했습니다:', error);
+      console.error('로그인 중 오류 발생:', error);
     }
   };
 

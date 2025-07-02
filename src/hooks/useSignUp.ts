@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -55,7 +55,7 @@ const useSignUp = () => {
     try {
       await signup(values);
     } catch (error) {
-      console.error('회원 가입 중 오류가 발생했습니다:', error);
+      console.error('회원 가입 중 오류 발생:', error);
     }
   };
 

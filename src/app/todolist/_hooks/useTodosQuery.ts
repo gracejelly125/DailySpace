@@ -6,7 +6,6 @@ import { fetchTodos } from '@/app/todolist/_utils/todos';
 import { Todo } from '@/types/types';
 
 export const useTodosQuery = (userId: string | null) => {
-  console.log('userId', userId);
   return useQuery<Todo[], Error>({
     queryKey: ['todos', userId],
     queryFn: () => fetchTodos(userId!),

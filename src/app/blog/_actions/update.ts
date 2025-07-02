@@ -36,14 +36,14 @@ export const updatePost = async ({
       .select();
 
     if (error) {
-      console.error('포스트 업데이트에 실패했습니다.', error);
+      console.error('포스트 업데이트 실패:', error);
       throw error;
     }
 
     revalidatePath(`/blog/${postId}`);
     redirect(`/blog/${postId}`);
   } catch (error) {
-    console.error('포스트 업데이트 중 에러가 발생했습니다.', error);
+    console.error('포스트 업데이트 중 에러 발생:', error);
     throw error;
   }
 };

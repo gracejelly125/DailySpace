@@ -1,5 +1,7 @@
 import { createServerClient } from '@supabase/ssr';
+
 import { cookies } from 'next/headers';
+
 import { Database } from '@/types/supabase';
 
 export const createClient = () => {
@@ -19,7 +21,7 @@ export const createClient = () => {
               cookieStore.set(name, value, options),
             );
           } catch (error) {
-            console.error(error);
+            console.error('Supabase 오류 발생:', error);
           }
         },
       },
