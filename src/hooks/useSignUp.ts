@@ -62,8 +62,11 @@ const useSignUp = () => {
       router.push('/sign-in');
     } catch (error: unknown) {
       if (error instanceof Error) {
+        console.log('catch error.message:', error.message);
         if (error.message === '이미 사용 중인 이메일입니다.') {
           toast.error('이미 사용 중인 이메일입니다.');
+        } else if (error.message === '이미 사용 중인 닉네임입니다.') {
+          toast.error('이미 사용 중인 닉네임입니다.');
         } else {
           toast.error('회원 가입 중 오류가 발생했습니다. 다시 시도해주세요.');
         }
