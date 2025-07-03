@@ -16,6 +16,29 @@ export const signup = async (
 
   const { email, password, nickname } = data;
 
+  // 이메일 중복 검사
+  const { data: existingEmails, error: emailError } = await supabase
+    .from('users')
+    .select('id')
+    .eq('email', email)
+    .limit(1);
+
+  if (emailError) {
+    return {
+      success: false,
+      errorType: 'other',
+      message: '이메일 중복 검사 중 오류가 발생했습니다.',
+    };
+  }
+
+  if (existingEmails && existingEmails.length > 0) {
+    return {
+      success: false,
+      errorType: 'email',
+      message: '이미 사용 중인 이메일입니다.',
+    };
+  }
+
   // 닉네임 중복 검사
   const { data: existingNicknames, error: nicknameError } = await supabase
     .from('users')
@@ -39,6 +62,7 @@ export const signup = async (
     };
   }
 
+  // 회원가입
   const { data: signupData, error: signupError } = await supabase.auth.signUp({
     email,
     password,
@@ -47,7 +71,6 @@ export const signup = async (
     },
   });
 
-  // 이메일 중복 검사
   if (signupError) {
     if (
       signupError.message.toLowerCase().includes('already registered') ||
@@ -90,7 +113,6 @@ export const signup = async (
       message: '사용자 정보를 저장하는 데 실패했습니다.',
     };
   }
-
   await signout();
 
   return { success: true };

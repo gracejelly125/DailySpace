@@ -105,18 +105,20 @@ const HomeSection = () => {
             <Image
               src="/assets/todolist.PNG"
               alt="투두리스트 사용 예시"
-              width={500}
-              height={500}
-              className="object-contain"
+              width={1000}
+              height={1000}
+              priority
+              className="object-cover"
             />
           </SwiperSlide>
           <SwiperSlide className="flex justify-center">
             <Image
               src="/assets/blog.PNG"
               alt="블로그 사용 예시"
-              width={500}
-              height={500}
-              className="object-contain"
+              width={1000}
+              height={1000}
+              priority
+              className="object-cover"
             />
           </SwiperSlide>
         </Swiper>
