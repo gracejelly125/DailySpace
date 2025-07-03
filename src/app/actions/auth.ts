@@ -4,25 +4,14 @@ import { SignUpDataType, User } from '@/types/types';
 import { adminClient } from '@/utils/supabase/admin';
 import { createClient } from '@/utils/supabase/server';
 
-/* 로그인 */
-export const signin = async (
-  email: string,
-  password: string,
-): Promise<void> => {
-  const supabase = createClient();
-
-  const { error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
-
-  if (error) {
-    throw new Error('로그인에 실패했습니다.');
-  }
-};
-
 /* 회원가입 */
-export const signup = async (data: SignUpDataType): Promise<void> => {
+export const signup = async (
+  data: SignUpDataType,
+): Promise<{
+  success: boolean;
+  errorType?: 'email' | 'nickname' | 'other';
+  message?: string;
+}> => {
   const supabase = createClient();
 
   const { email, password, nickname } = data;
@@ -35,11 +24,19 @@ export const signup = async (data: SignUpDataType): Promise<void> => {
     .limit(1);
 
   if (nicknameError) {
-    throw new Error('닉네임 중복 검사 중 오류가 발생했습니다.');
+    return {
+      success: false,
+      errorType: 'other',
+      message: '닉네임 중복 검사 중 오류가 발생했습니다.',
+    };
   }
 
   if (existingNicknames && existingNicknames.length > 0) {
-    throw new Error('이미 사용 중인 닉네임입니다.');
+    return {
+      success: false,
+      errorType: 'nickname',
+      message: '이미 사용 중인 닉네임입니다.',
+    };
   }
 
   const { data: signupData, error: signupError } = await supabase.auth.signUp({
@@ -56,15 +53,27 @@ export const signup = async (data: SignUpDataType): Promise<void> => {
       signupError.message.toLowerCase().includes('already registered') ||
       signupError.message.toLowerCase().includes('duplicate')
     ) {
-      throw new Error('이미 사용 중인 이메일입니다.');
+      return {
+        success: false,
+        errorType: 'email',
+        message: '이미 사용 중인 이메일입니다.',
+      };
     }
-    throw new Error('회원가입에 실패했습니다.');
+    return {
+      success: false,
+      errorType: 'other',
+      message: '회원가입에 실패했습니다.',
+    };
   }
 
   const user = signupData.user;
 
   if (!user || !user.id) {
-    throw new Error('사용자 정보를 가져오는 데 실패했습니다.');
+    return {
+      success: false,
+      errorType: 'other',
+      message: '사용자 정보를 가져오는 데 실패했습니다.',
+    };
   }
 
   // 사용자 정보를 users 테이블에 저장
@@ -75,10 +84,16 @@ export const signup = async (data: SignUpDataType): Promise<void> => {
   });
 
   if (insertError) {
-    throw new Error('사용자 정보를 저장하는 데 실패했습니다.');
+    return {
+      success: false,
+      errorType: 'other',
+      message: '사용자 정보를 저장하는 데 실패했습니다.',
+    };
   }
 
   await signout();
+
+  return { success: true };
 };
 
 /* 로그아웃 */
