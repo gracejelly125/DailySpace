@@ -2,7 +2,9 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { z } from 'zod';
 
 import { signup } from '@/app/actions/auth';
@@ -36,6 +38,8 @@ export const signupSchema = z
   });
 
 const useSignUp = () => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -54,8 +58,20 @@ const useSignUp = () => {
   const onSubmit = async (values: SignUpDataType) => {
     try {
       await signup(values);
-    } catch (error) {
-      console.error('회원 가입 중 오류 발생:', error);
+      toast.success('회원가입에 성공했습니다!');
+      router.push('/sign-in');
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        if (error.message === '이미 사용 중인 이메일입니다.') {
+          toast.error('이미 사용 중인 이메일입니다.');
+        } else {
+          toast.error('회원 가입 중 오류가 발생했습니다. 다시 시도해주세요.');
+        }
+        console.error('회원 가입 중 오류 발생:', error);
+      } else {
+        toast.error('알 수 없는 오류가 발생했습니다.');
+        console.error('알 수 없는 오류 발생:', error);
+      }
     }
   };
 
