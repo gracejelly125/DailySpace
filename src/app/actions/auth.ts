@@ -31,11 +31,20 @@ export const signup = async (data: SignUpDataType): Promise<void> => {
     email,
     password,
     options: {
-      data: { nickname: nickname },
+      data: { nickname },
     },
   });
 
-  if (signupError) throw new Error('회원가입에 실패했습니다.');
+  if (signupError) {
+    // 이메일 중복 에러 체크
+    if (
+      signupError.message.toLowerCase().includes('already registered') ||
+      signupError.message.toLowerCase().includes('duplicate')
+    ) {
+      throw new Error('이미 사용 중인 이메일입니다.');
+    }
+    throw new Error('회원가입에 실패했습니다.');
+  }
 
   const user = signupData.user;
 
@@ -47,7 +56,7 @@ export const signup = async (data: SignUpDataType): Promise<void> => {
   const { error: insertError } = await supabase.from('users').insert({
     id: user.id as string,
     email: user.email as string,
-    nickname: nickname,
+    nickname,
   });
 
   if (insertError) {
