@@ -28,7 +28,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <div className="bg-background min-h-screen">
       <Header />
       <TQProvider>
-        <main className="max-w-4xl mx-auto pt-20 px-5 pb-5">{children}</main>
+        <main className="max-w-4xl mx-auto pt-20 px-5 pb-10">{children}</main>
       </TQProvider>
     </div>
   );

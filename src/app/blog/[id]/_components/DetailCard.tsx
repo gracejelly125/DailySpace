@@ -114,8 +114,8 @@ const DetailCard = ({ postId }: DetailCardProps) => {
         </time>
 
         {postDetailData.image_url && postDetailData.image_url.length > 0 ? (
-          <div className="flex">
-            <div className="flex-1">
+          <div className="flex flex-col md:flex-row mt-4">
+            <div className="w-full md:flex-1 flex justify-center">
               <Swiper
                 modules={[Pagination, Navigation]}
                 navigation={true}
@@ -141,8 +141,9 @@ const DetailCard = ({ postId }: DetailCardProps) => {
                 ))}
               </Swiper>
             </div>
-            <div className="flex-1">
-              <h3 className="mt-6 text-center text-xl font-bold text-textMain">
+
+            <div className="w-full md:flex-1 flex flex-col justify-center">
+              <h3 className="text-center text-xl font-bold text-textMain">
                 {postDetailData.title}
               </h3>
               <p className="mt-2 text-center whitespace-pre-wrap text-textSub">
