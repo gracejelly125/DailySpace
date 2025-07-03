@@ -27,6 +27,21 @@ export const signup = async (data: SignUpDataType): Promise<void> => {
 
   const { email, password, nickname } = data;
 
+  // 닉네임 중복 검사
+  const { data: existingNicknames, error: nicknameError } = await supabase
+    .from('users')
+    .select('id')
+    .eq('nickname', nickname)
+    .limit(1);
+
+  if (nicknameError) {
+    throw new Error('닉네임 중복 검사 중 오류가 발생했습니다.');
+  }
+
+  if (existingNicknames && existingNicknames.length > 0) {
+    throw new Error('이미 사용 중인 닉네임입니다.');
+  }
+
   const { data: signupData, error: signupError } = await supabase.auth.signUp({
     email,
     password,
@@ -35,8 +50,8 @@ export const signup = async (data: SignUpDataType): Promise<void> => {
     },
   });
 
+  // 이메일 중복 검사
   if (signupError) {
-    // 이메일 중복 에러 체크
     if (
       signupError.message.toLowerCase().includes('already registered') ||
       signupError.message.toLowerCase().includes('duplicate')
