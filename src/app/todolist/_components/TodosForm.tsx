@@ -47,13 +47,13 @@ const TodosForm = () => {
     <div className="flex flex-col p-4">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="common-form flex flex-wrap items-center gap-4"
+        className="common-form flex flex-wrap justify-center items-center gap-4"
       >
-        <div className="flex flex-col">
+        <div>
           <input
             id="title"
             type="text"
-            className="common-input w-[300px] text-sm"
+            className="w-full common-input md:w-[300px] text-sm"
             placeholder="제목을 입력해주세요."
             {...register('title', { required: '제목을 입력해주세요.' })}
           />
@@ -68,7 +68,7 @@ const TodosForm = () => {
           <input
             id="content"
             type="text"
-            className="common-input w-[300px] text-sm"
+            className="common-input w-full md:w-[300px] text-sm"
             placeholder="내용을 입력해주세요."
             {...register('content', { required: '내용을 입력해주세요.' })}
           />

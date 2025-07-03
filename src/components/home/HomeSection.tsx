@@ -6,10 +6,10 @@ import Link from 'next/link';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { useAuth } from '@/providers/AuthProvider';
+import useAuthStore from '@/store/useAuthStore';
 
 const HomeSection = () => {
-  const { isAuthenticated } = useAuth();
+  const { isLoggedIn } = useAuthStore();
 
   return (
     <div className="text-center mt-10 px-4">
@@ -54,7 +54,7 @@ const HomeSection = () => {
       </motion.p>
 
       <div className="mt-10 flex items-center justify-center">
-        {isAuthenticated ? (
+        {isLoggedIn ? (
           <div className="flex gap-5">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}

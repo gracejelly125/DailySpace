@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 
 import IntroSplash from '@/components/home/IntroSplash';
 import Header from '@/components/layout/Header';
+import useCheckAuth from '@/hooks/useCheckAuth';
+import TQProvider from '@/providers/TQProvider';
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isIntroVisible, setIsIntroVisible] = useState(true);
@@ -16,6 +18,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     return () => clearTimeout(timer);
   }, []);
 
+  useCheckAuth(!isIntroVisible);
+
   if (isIntroVisible) {
     return <IntroSplash />;
   }
@@ -23,7 +27,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="bg-background min-h-screen">
       <Header />
-      <main className="max-w-4xl mx-auto pt-20 px-5 pb-5">{children}</main>
+      <TQProvider>
+        <main className="max-w-4xl mx-auto pt-20 px-5 pb-5">{children}</main>
+      </TQProvider>
     </div>
   );
 };

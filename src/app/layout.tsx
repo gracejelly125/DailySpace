@@ -7,7 +7,6 @@ import 'swiper/css/pagination';
 
 import '@/app/globals.css';
 import Layout from '@/components/layout/Layout';
-import Provider from '@/providers/Provider';
 
 export const metadata: Metadata = {
   title: 'Daily Space',
@@ -22,23 +21,21 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <Provider>
-          <Layout>
-            {children}
-            <ToastContainer
-              position="top-right"
-              autoClose={3000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="light"
-            />
-          </Layout>
-        </Provider>
+        <Layout>
+          {children}
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+        </Layout>
       </body>
     </html>
   );

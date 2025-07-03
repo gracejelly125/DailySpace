@@ -28,7 +28,7 @@ export const DELETE = async (request: Request) => {
     }
 
     try {
-      await supabase.from('todolist').delete().eq('user_id', userId);
+      await supabase.rpc('delete_user', { user_id: userId });
 
       const { error: authError } = await supabase.auth.admin.deleteUser(userId);
 
@@ -52,7 +52,7 @@ export const DELETE = async (request: Request) => {
       );
     }
   } catch (error) {
-    console.error('최종 오류:', error);
+    console.error('계정 삭제 오류:', error);
     return NextResponse.json(
       { error: '회원 탈퇴 처리 중 오류가 발생했습니다.' },
       { status: 500 },
