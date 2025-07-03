@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 import { createClient } from '@/utils/supabase/client';
 
-type SocialProvider = 'github' | 'google' | 'kakao';
+type SocialProvider = 'google' | 'kakao';
 
 export const useSocialLogin = () => {
   const supabase = createClient();
